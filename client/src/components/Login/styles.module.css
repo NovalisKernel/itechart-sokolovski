@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+}
+p{
+    margin: 0;
+    padding: 0;
+}
+
+.main{
+    height: 100vh;
+    width: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+}
+.main>div{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+.main h1{
+    color: #cc0000;
+    font-size: 30px;
+    font-weight: bold;
+    position: relative;
+    bottom: 100px;
+}
+.main .form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.main .form label{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    width: 50%;
+}
+.main .form label span{
+    color:#294054;
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin: 5px 0;
+}
+.main .form input{
+    padding: 10px 0;
+}
+.main .form button{
+    margin: 30px 0;
+}
+.main .form p span{
+    font-weight: bold;
+}
+.leftLoginBlock img{
+    position: absolute;
+    bottom: 20px;
+}
+.rightLoginBlock{
+    background: url("../../assets/img/back.jpg");
+    background-size: cover;
+    background-position: center;
+}
+.rightLoginBlock h2{
+    color: #ffdd48;
+    font-size: 155px;
+    font-weight: bold;
+}
