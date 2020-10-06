@@ -13,11 +13,6 @@
     "husky:pre-push": "npm run lint",
     "eslint-check": "eslint --print-config . | eslint-config-prettier-check"
   },
-  "husky": {
-    "hooks": {
-      "pre-push": "npm run husky:pre-push"
-    }
-  },
   "dependencies": {
     "@babel/runtime": "^7.11.2",
     "@redux-saga/testing-utils": "^1.1.3",
