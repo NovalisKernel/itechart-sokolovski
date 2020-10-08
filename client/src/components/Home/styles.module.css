@@ -1,0 +1,48 @@
+.menu{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 50px;
+    background: #ffffff;
+    border-bottom: 1px solid #dddddd;
+    z-index: 1;
+    box-shadow: 0 0 2px 2px #dddddd;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.menu button{
+    margin-right: 5%;
+    padding: 10px 20px;
+    background: none;
+    border: 1px solid #dddddd;
+}
+.menu button:hover{
+    background: #dddddd;
+    cursor: pointer;
+    box-shadow: 3px 0 10px 1px #8a8a8a;
+    transition: .5s all;
+}
+.main{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+.emptyContact h1{
+    color: #172b3a;
+    font-size: 60px;
+    letter-spacing: 6px;
+    font-weight: bold;
+}
+.emptyContact p{
+    color: #172b3a;
+    margin-top: 15px;
+}
+.emptyContact button{
+    margin-top: 40px;
+}
+.main>img{
+    width: 30%;
+}
