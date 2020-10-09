@@ -1,3 +1,8 @@
+.home{
+    background: #f4f4f4;
+    min-height: 100vh;
+    display: flex;
+}
 .menu{
     display: flex;
     justify-content: flex-end;
@@ -29,6 +34,7 @@
     align-items: center;
     height: 100vh;
     width: 100%;
+    
 }
 .emptyContact h1{
     color: #172b3a;
@@ -45,4 +51,83 @@
 }
 .main>img{
     width: 30%;
+}
+.notEmptyContact{
+    width: 90%;
+    margin: 50px auto;
+}
+.notEmptyContact h2{
+    margin-top: 40px;
+}
+.notEmptyContact .sort{
+    margin: 20px 0 40px 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.notEmptyContact .sort input{
+    padding: 10px 20px;
+    text-indent: 30px;
+}
+.notEmptyContact .sort input::placeholder{
+    font-style: italic;
+}
+.notEmptyContact .sort img{
+    width: 15px;
+    background: #fff;
+    padding: 11px;
+    outline: 1px solid #dddddd;
+}
+.notEmptyContact .sort img:hover{
+    cursor: pointer;
+}
+.notEmptyContact .sort .searchIcon{
+    position: absolute;
+    left: 15px;
+    top: 10px;
+    padding: 0;
+    background: none;
+    outline: none;
+}
+.notEmptyContact .sort .searchIcon:hover{
+    cursor: auto;
+}
+.notEmptyContact .sort .filter{
+    margin: 0 20px;
+    height: 100%;
+}
+.notEmptyContact .sort .active{
+    background: #efefef;
+}
+.notEmptyContact>img{
+    width: 30%;
+}
+.notEmptyContact table{
+    width: 100%;
+    border: 1px solid #dddddd;
+    border-collapse: collapse;
+}
+.notEmptyContact table thead{
+    border-bottom: 1px solid #dddddd;
+    border-collapse: collapse;
+}
+.notEmptyContact table tr{
+    background: #fff;
+}
+.notEmptyContact table tr>td:first-child{
+    font-weight: bold;
+}
+.notEmptyContact table td{
+    text-align: center;
+    padding: 15px 0;
+}
+.notEmptyContact tbody>tr:nth-child(2n){
+    background: #f9f9f9;
+}
+.notEmptyContact td .editImg{
+    opacity: .5;
+}
+.notEmptyContact td .editImg:hover{
+    opacity: 1;
+    cursor: pointer;
 }

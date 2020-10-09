@@ -9,7 +9,6 @@ function App() {
     <Switch>
       <Route exact path="/" component={LoginPage} />
       <Route exact path="/contacts" component={Home} />
-
     </Switch>
   );
 }
