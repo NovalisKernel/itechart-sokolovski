@@ -1,0 +1,29 @@
+.contactTable{
+    width: 100%;
+    border: 1px solid #dddddd;
+    border-collapse: collapse;
+}
+.contactTable thead{
+    border-bottom: 1px solid #dddddd;
+    border-collapse: collapse;
+}
+.contactTable tr{
+    background: #fff;
+}
+.contactTable tr>td:first-child{
+    font-weight: bold;
+}
+.contactTable td{
+    text-align: center;
+    padding: 15px 0;
+}
+.contactTable tbody>tr:nth-child(2n){
+    background: #f9f9f9;
+}
+.contactTable td .editImg{
+    opacity: .5;
+}
+.contactTable td .editImg:hover{
+    opacity: 1;
+    cursor: pointer;
+}

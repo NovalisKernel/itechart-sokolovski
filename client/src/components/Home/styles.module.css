@@ -102,32 +102,3 @@
 .notEmptyContact>img{
     width: 30%;
 }
-.notEmptyContact table{
-    width: 100%;
-    border: 1px solid #dddddd;
-    border-collapse: collapse;
-}
-.notEmptyContact table thead{
-    border-bottom: 1px solid #dddddd;
-    border-collapse: collapse;
-}
-.notEmptyContact table tr{
-    background: #fff;
-}
-.notEmptyContact table tr>td:first-child{
-    font-weight: bold;
-}
-.notEmptyContact table td{
-    text-align: center;
-    padding: 15px 0;
-}
-.notEmptyContact tbody>tr:nth-child(2n){
-    background: #f9f9f9;
-}
-.notEmptyContact td .editImg{
-    opacity: .5;
-}
-.notEmptyContact td .editImg:hover{
-    opacity: 1;
-    cursor: pointer;
-}
