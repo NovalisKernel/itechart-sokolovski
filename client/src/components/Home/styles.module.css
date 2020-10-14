@@ -48,7 +48,9 @@
 }
 .emptyContact button{
     margin-top: 40px;
+    padding: 10px 10%;
 }
+
 .main>img{
     width: 30%;
 }
@@ -88,6 +90,14 @@
     padding: 0;
     background: none;
     outline: none;
+}
+.actionRow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.actionRow>button{
+    padding: 10px 20px;
 }
 .notEmptyContact .sort .searchIcon:hover{
     cursor: auto;

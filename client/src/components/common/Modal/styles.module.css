@@ -1,0 +1,86 @@
+.modal{
+    height: 100vh;
+    width: 100%;
+    background: rgba(0, 0, 0, 70%);
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+.modalInfo{
+    background: white;
+    width: 35%;
+    padding: 15px;
+}
+.titleRow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.title{
+
+}
+
+.close{
+    width: 20px;
+    height: 20px;
+}
+.close:hover{
+    cursor: pointer;
+    fill: #ff0000;
+}
+
+
+.contactBlock{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.contactText{
+    color: #556a7c;
+    font-size: 13px;
+    font-weight: bold;
+}
+.contactBlock input{
+    padding: 7px 0;
+    text-indent: 20px;
+    margin-top: 5px;
+}
+
+.doubleInputField{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.aloneInputField{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 45%;
+}
+.aloneInputText{
+    color: #556a7c;
+    font-size: 13px;
+    font-weight: bold;
+}
+.aloneInputField input{
+    padding: 7px 0;
+    text-indent: 20px;
+    margin-top: 5px;
+    width: 100%;
+}
+
+.textAreaTitle{
+    margin-top: 10px;
+    color: #556a7c;
+    font-size: 13px;
+    font-weight: bold;
+}
+.modalInfo textarea{
+    width: 96%;
+    margin-top: 5px;
+    height: 30%;
+    resize: none;
+    padding: 2%;
+}

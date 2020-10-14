@@ -4,6 +4,7 @@ import Input from 'components/common/Input';
 import Button from 'components/common/Button';
 import Table from 'components/common/Table';
 import List from 'components/common/List';
+import Modal from 'components/common/Modal';
 import empty from 'assets/img/emptyImg.png';
 import point from 'assets/img/vertical_point.png';
 import searchicon from 'assets/img/searchicon.png';
@@ -46,6 +47,12 @@ function Home({ contacts }) {
                 <button>LogOut</button>
                 {/* <OkIcon /> */}
             </div>
+
+            {
+                modalState?<Modal closeModal={()=>setModalState(false)}/>:null
+            }
+
+
             {
                 (contacts.length === 0) ?
                     <div className={styles.main}>
@@ -58,13 +65,17 @@ function Home({ contacts }) {
                     </div> :
                     <div className={styles.notEmptyContact}>
                         <h2>Power Base</h2>
-                        <div className={styles.sort}>
-                            <Input type="text" placeholder="Search" onChange={(e) => searchInputHandler(e.target.value)} />
-                            <img className={styles.searchIcon} src={searchicon} alt="" />
-                            <img className={styles.filter} src={filter} alt="" />
-                            <img onClick={(e) => showTable(e.target)} className={isContactsTable ? styles.active : styles.notActive} src={row} style={activeTable} alt="" />
-                            <img onClick={(e) => showList(e.target)} src={grid} style={activeList} alt="" />
+                        <div className={styles.actionRow}>
+                            <div className={styles.sort}>
+                                <Input type="text" placeholder="Search" onChange={(e) => searchInputHandler(e.target.value)} />
+                                <img className={styles.searchIcon} src={searchicon} alt="" />
+                                <img className={styles.filter} src={filter} alt="" />
+                                <img onClick={(e) => showTable(e.target)} className={isContactsTable ? styles.active : styles.notActive} src={row} style={activeTable} alt="" />
+                                <img onClick={(e) => showList(e.target)} src={grid} style={activeList} alt="" />
+                            </div>
+                            <Button handleClick={() => { setModalState(!modalState) }} text="Add New Priority Contact"/>
                         </div>
+                        
                         {isContactsTable ? <Table contacts={contacts} /> : <List contacts={contacts} />}
                     </div>
             }
