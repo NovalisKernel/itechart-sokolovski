@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './styles.module.css';
-import Input from 'components/common/Input';
-import Textarea from 'components/common/Textarea';
+import Input from '../Input';
+import Textarea from '../Textarea';
 import { ReactComponent as CloseIcon } from 'assets/img/close.svg';
+import Button from '../Button';
 
 
 function Modal({closeModal}){
@@ -40,6 +41,11 @@ function Modal({closeModal}){
                 </div>
                 <h2 className={styles.textAreaTitle}>Priority topics for this individual</h2>
                 <Textarea className={styles.textBox}/>
+                <div className={styles.bottomBtns}>
+                    <Button text="Cancel" isCancel={true} handleClick = {closeModal}/>
+                    <Button text="Save"/>
+
+                </div>
             </div>
         </div>
     )

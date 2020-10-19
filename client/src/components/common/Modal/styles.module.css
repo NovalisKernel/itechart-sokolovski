@@ -18,9 +18,7 @@
     justify-content: space-between;
     align-items: center;
 }
-.title{
 
-}
 
 .close{
     width: 20px;
@@ -83,4 +81,14 @@
     height: 30%;
     resize: none;
     padding: 2%;
+}
+.bottomBtns{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+.bottomBtns button{
+    padding: 10px 50px;
+    margin: 0 10px;
 }

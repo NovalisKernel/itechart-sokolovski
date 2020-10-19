@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Contact from 'components/common/Contact';
 import styles from './styles.module.css';
-import point from 'assets/img/vertical_point.png';
+// import point from 'assets/img/vertical_point.png';
 
-function List({contacts}){
+function List({contacts,searchValue}){
 
     const priorityList = new Set();
     let lastPriority = null;
-    const contactsList = [];
+    // const contactsList = [];
 
     contacts.map((contact)=>{
         if(contact.level !== lastPriority){
@@ -18,8 +18,6 @@ function List({contacts}){
         }
     });
     let priorityArray =[...priorityList];
-    console.log(priorityArray);
-
 
     return(
         <div className={styles.list}>
@@ -30,7 +28,10 @@ function List({contacts}){
                                  <h2>{priority} Priority</h2>
                                  <div className={styles.contacts}>
                                         {contacts.map((contact)=>{
-                                            if(contact.level === priority){
+                                            if(contact.name.indexOf(searchValue)===-1 && searchValue){
+                                                return
+                                            }
+                                            else if(contact.level === priority){
                                                     return (
                                                         <Contact 
                                                             key={contact.id} 

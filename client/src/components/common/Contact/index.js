@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './styles.module.css';
 import point from 'assets/img/vertical_point.png';
 
@@ -8,7 +8,7 @@ function Contact({ contacts }) {
             <div className={styles.title}>
                 <h3 className={styles.name}>{contacts.name}</h3>
                 <div className={styles.icons}>
-                    <img src={point} />
+                    <img src={point} alt=""/>
                 </div>
             </div>
             <h3 className={styles.post}>{contacts.job}</h3>

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './styles.module.css';
 import point from 'assets/img/vertical_point.png';
 
 
-function Table({contacts}) {
+function Table({contacts,searchValue}) {
     return (
         <table className={styles.contactTable}>
             <thead>
@@ -19,7 +19,10 @@ function Table({contacts}) {
                 </tr>
             </thead>
             <tbody>
-                {contacts.map((contact, index) => {
+                {contacts.map((contact) => {
+                    if(contact.name.indexOf(searchValue)===-1 && searchValue){
+                        return;
+                    }
                     return (
                         <tr key={contact.id}>
                             <td>{contact.name}</td>

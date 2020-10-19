@@ -4,7 +4,7 @@ import styles from './styles.module.css';
 
 function Textarea(props){
     return(
-        <textarea name="">
+        <textarea className={styles.textArea} name="">
 
         </textarea>
     )
