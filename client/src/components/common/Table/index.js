@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './styles.module.css';
 import point from 'assets/img/vertical_point.png';
+import { ReactComponent as Topic } from 'assets/img/notes.svg';
+
 
 
 function Table({contacts,searchValue}) {
@@ -15,6 +17,7 @@ function Table({contacts,searchValue}) {
                     <td>Decision Right</td>
                     <td>Relationship Owner</td>
                     <td>PriorityTopics</td>
+                    
                     <td>&nbsp;</td>
                 </tr>
             </thead>
@@ -31,7 +34,12 @@ function Table({contacts,searchValue}) {
                             <td>{contact.promoter}</td>
                             <td>{contact.decision}</td>
                             <td>{contact.relatOwner}</td>
-                            <td>None</td>
+                            <td>
+                                <div className={styles.details}>
+                                    <Topic className={styles.topicIcon}/>
+                                    Details
+                                </div>       
+                            </td>
                             <td><img className={styles.editImg} src={point} alt="" /></td>
                         </tr>
                     )

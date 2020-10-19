@@ -27,3 +27,24 @@
     opacity: 1;
     cursor: pointer;
 }
+
+.details{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0,0,0,0.4);
+    fill: rgba(0,0,0,0.4);
+    transition: color,fill .5s;
+    cursor: pointer;
+}
+.topicIcon{
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+
+}
+.details:hover{
+    color: rgba(0,0,0,1);
+    fill: rgba(0,0,0,1);
+    transition: .5s all;
+}

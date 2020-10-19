@@ -5,6 +5,7 @@ import Button from 'components/common/Button';
 import Table from 'components/common/Table';
 import List from 'components/common/List';
 import Modal from 'components/common/Modal';
+import Details from 'components/common/Details';
 import empty from 'assets/img/emptyImg.png';
 // import point from 'assets/img/vertical_point.png';
 import searchicon from 'assets/img/searchicon.png';
@@ -45,6 +46,8 @@ function Home({ contacts }) {
     }
     /*SEARCH END*/
 
+    const[isDetails,setIsDetails]=useState(false);
+
 
 
     return (
@@ -56,6 +59,10 @@ function Home({ contacts }) {
 
             {
                 modalState?<Modal closeModal={()=>setModalState(false)}/>:null
+            }
+            {
+                isDetails?<Details/>:null
+
             }
 
 
