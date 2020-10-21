@@ -5,7 +5,8 @@ import { ReactComponent as Topic } from 'assets/img/notes.svg';
 
 
 
-function Table({contacts,searchValue}) {
+function Table({contacts,searchValue,openDetailsHandler}) {
+    
     return (
         <table className={styles.contactTable}>
             <thead>
@@ -24,7 +25,7 @@ function Table({contacts,searchValue}) {
             <tbody>
                 {contacts.map((contact) => {
                     if(contact.name.indexOf(searchValue)===-1 && searchValue){
-                        return;
+                        return null;
                     }
                     return (
                         <tr key={contact.id}>
@@ -35,7 +36,7 @@ function Table({contacts,searchValue}) {
                             <td>{contact.decision}</td>
                             <td>{contact.relatOwner}</td>
                             <td>
-                                <div className={styles.details}>
+                                <div onClick={()=>openDetailsHandler(contact.id)} className={styles.details}>
                                     <Topic className={styles.topicIcon}/>
                                     Details
                                 </div>       

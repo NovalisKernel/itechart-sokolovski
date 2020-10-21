@@ -6,4 +6,45 @@
     bottom: 0;
     background: rgba(0,0,0,.6);
     z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.popUp{
+    background: #fff;
+    padding: 20px;
+    width: 50%;
+    position: relative;
+}
+.rowOnText{
+    color: #6e808f;
+    margin-top: 30px;
+}
+.rowImg{
+    width: 14px;
+    height: 14px;
+    margin-right: 10px;
+}
+.text{
+    margin-top: 5px;
+    border: 1px solid #6e808f93;
+    padding: 10px;
+}
+.close{
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+.close:hover{
+    fill: #ff0000;
+}
+.underPopUp{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
