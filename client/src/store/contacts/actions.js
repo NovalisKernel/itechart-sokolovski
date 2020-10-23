@@ -1,9 +1,16 @@
-import {CHANGE_SEARCH_STRING} from 'store/actionTypes'
+import {CHANGE_SEARCH_STRING,DELETE_CONTACT} from 'store/actionTypes'
+
 
 
 export function changeSearchString(value){
     return{
         type: CHANGE_SEARCH_STRING,
         payload: value
+    }
+}
+export function deleteContact(value){
+    return{
+        type: DELETE_CONTACT,
+        payload:value
     }
 }

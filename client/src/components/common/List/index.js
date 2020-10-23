@@ -3,7 +3,7 @@ import Contact from 'components/common/Contact';
 import styles from './styles.module.css';
 // import point from 'assets/img/vertical_point.png';
 
-function List({contacts,searchValue}){
+function List({contacts,searchValue,openDetailsHandler}){
 
     const priorityList = new Set();
     let lastPriority = null;
@@ -34,8 +34,9 @@ function List({contacts,searchValue}){
                                             else if(contact.level === priority){
                                                     return (
                                                         <Contact 
+                                                            openDetailsHandler={openDetailsHandler}
                                                             key={contact.id} 
-                                                            contacts={contact}
+                                                            contact ={contact}
                                                         />
                                                     );
                                             }

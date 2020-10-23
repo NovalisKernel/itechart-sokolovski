@@ -101,7 +101,7 @@ function Home() {
                             <Button handleClick={() => { setModalState(!modalState) }} text="Add New Priority Contact" />
                         </div>
 
-                        {isContactsTable ? <Table openDetailsHandler={(id)=>setIsDetails({...isDetails,open:true,idClicked:id})} contacts={filterContacts} searchValue={searchValue} /> : <List contacts={filterContacts} searchValue={searchValue} />}
+                        {isContactsTable ? <Table openDetailsHandler={(id)=>setIsDetails({...isDetails,open:true,idClicked:id})} contacts={filterContacts} searchValue={searchValue} /> : <List openDetailsHandler={(id)=>setIsDetails({...isDetails,open:true,idClicked:id})} contacts={filterContacts} searchValue={searchValue} />}
                     </div>
             }
         </div>

@@ -1,19 +1,32 @@
 import React from 'react';
 import styles from './styles.module.css';
-import point from 'assets/img/vertical_point.png';
+import {useSelector,useDispatch} from 'react-redux';
+import {deleteContact} from 'store/contacts/actions';
+import {ReactComponent as Add} from 'assets/img/plus.svg';
+import {ReactComponent as Edit} from 'assets/img/pencil.svg';
+import {ReactComponent as Delete} from 'assets/img/delete.svg';
+import { ReactComponent as Topic } from 'assets/img/notes.svg';
 
-function Contact({ contacts }) {
+
+function Contact({ contact,openDetailsHandler}) {
+    const contacts = useSelector(state=>state.contacts)
+    const dispatch = useDispatch();
     return (
         <div className={styles.contact}>
             <div className={styles.title}>
-                <h3 className={styles.name}>{contacts.name}</h3>
+                <h3 className={styles.name}>{contact.name}</h3>
                 <div className={styles.icons}>
-                    <img src={point} alt=""/>
+                    <Edit className={styles.actionSvg}/>
+                    <Add className={styles.actionSvg}/>
+                    <Delete onClick={()=>dispatch(deleteContact(contact.id))} className={styles.actionSvg}/>
                 </div>
             </div>
-            <h3 className={styles.post}>{contacts.job}</h3>
-            <p className={styles.decision}>Decision Right: {contacts.decision}</p>
-            <p className={styles.owner}>Relationship Owner: {contacts.relatOwner}</p>
+            <h3 className={styles.post}>{contact.job}</h3>
+            <p className={styles.decision}>Decision Right: {contact.decision}</p>
+            <p className={styles.owner}>Relationship Owner: {contact.relatOwner}</p>
+            <div className={styles.detractorAndDetails}>
+                <Topic onClick={()=>openDetailsHandler(contact.id)} className={styles.topic}/>
+            </div>
         </div>
     )
 }
