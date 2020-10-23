@@ -2,11 +2,12 @@ import React from 'react';
 import styles from './styles.module.css';
 import point from 'assets/img/vertical_point.png';
 import { ReactComponent as Topic } from 'assets/img/notes.svg';
-
+import ActionsModal from '../ActionsModal';
+import {useState} from 'react';
 
 
 function Table({contacts,searchValue,openDetailsHandler}) {
-    
+    const [idActionModalOpen,setIdActionModal] = useState(NaN);
     return (
         <table className={styles.contactTable}>
             <thead>
@@ -41,7 +42,11 @@ function Table({contacts,searchValue,openDetailsHandler}) {
                                     Details
                                 </div>       
                             </td>
-                            <td><img className={styles.editImg} src={point} alt="" /></td>
+                            <td className={styles.editTd}>
+                                <img onClick = {()=>idActionModalOpen!==contact.id?setIdActionModal(contact.id):setIdActionModal(NaN)} 
+                                    className={styles.editImg} src={point} alt="" />
+                                <ActionsModal id={contact.id} active = {idActionModalOpen === contact.id?true:false}/>
+                            </td>
                         </tr>
                     )
                 })}

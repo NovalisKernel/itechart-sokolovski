@@ -40,13 +40,9 @@ function contactsReducer(state = initialState, { type, payload }) {
                 filteredContacts: state.searchString ? state.data.filter(item => item.name.includes(payload)) : state.data
             }
             case DELETE_CONTACT:
-                let newData = [...state.data];
-                newData.map((contact)=>{
-                    if(contact.id == payload){delete newData[0]}
-                })
                 return{
                     ...state,
-                    data:newData
+                    data:state.data.filter(item=>item.id!==payload)
 
                 }
 
