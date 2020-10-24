@@ -2,10 +2,12 @@ import React from 'react';
 import styles from './styles.module.css';
 import {useSelector,useDispatch} from 'react-redux';
 import {deleteContact} from 'store/contacts/actions';
+import {editContact} from 'store/contacts/actions';
 import {ReactComponent as Add} from 'assets/img/plus.svg';
 import {ReactComponent as Edit} from 'assets/img/pencil.svg';
 import {ReactComponent as Delete} from 'assets/img/delete.svg';
 import { ReactComponent as Topic } from 'assets/img/notes.svg';
+
 
 
 function Contact({ contact,openDetailsHandler}) {
@@ -16,7 +18,7 @@ function Contact({ contact,openDetailsHandler}) {
             <div className={styles.title}>
                 <h3 className={styles.name}>{contact.name}</h3>
                 <div className={styles.icons}>
-                    <Edit className={styles.actionSvg}/>
+                    <Edit onClick={()=>dispatch(editContact(contact.id))} className={styles.actionSvg}/>
                     <Add className={styles.actionSvg}/>
                     <Delete onClick={()=>dispatch(deleteContact(contact.id))} className={styles.actionSvg}/>
                 </div>

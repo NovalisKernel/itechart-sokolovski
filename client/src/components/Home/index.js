@@ -14,6 +14,7 @@ import searchicon from 'assets/img/searchicon.png';
 import filter from 'assets/img/filter.png';
 import grid from 'assets/img/grid.png';
 import row from 'assets/img/row.png';
+import EditContact from 'components/common/EditContact';
 // import { ReactComponent as OkIcon } from 'assets/img/ok.svg';
 
 
@@ -22,9 +23,11 @@ import row from 'assets/img/row.png';
 
 function Home() {
     const contacts = useSelector(state => state.contacts.data);
-   
+    const editContactId = useSelector(state=>state.contacts.editContactId);
     const searchString = useSelector(state => state.contacts.searchString);
     const filterContacts = searchString?contacts.filter((contact)=>contact.name.includes(searchString)):contacts;
+
+    const editorContact = contacts.filter((contact)=>contact.id===editContactId);
 
     const dispatch = useDispatch();
     const [modalState, setModalState] = useState(false);
@@ -68,7 +71,9 @@ function Home() {
                 <button>LogOut</button>
                 {/* <OkIcon /> */}
             </div>
-
+            {
+                editContactId !== -1 ? <EditContact contact={editorContact[0]}/>:null
+            }
             {
                 modalState ? <Modal closeModal={() => setModalState(false)} /> : null
             }

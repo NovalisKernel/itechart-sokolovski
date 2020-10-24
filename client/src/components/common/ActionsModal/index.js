@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './styles.module.css';
 import {useDispatch} from 'react-redux';
 import {deleteContact} from 'store/contacts/actions';
+import {editContact} from 'store/contacts/actions';
+
 
 function ActionsModal({active,id}) {
     const cls = [styles.actionsModal];
@@ -11,7 +13,7 @@ function ActionsModal({active,id}) {
     }
     return(
         <div className={cls.join(' ')}>
-            <span className={styles.editText}>Edit</span>
+            <span onClick={()=>dispatch(editContact(id))} className={styles.editText}>Edit</span>
             <span className={styles.createText}>Create new relationship play</span>
             <span onClick={()=>dispatch(deleteContact(id))} className={styles.deleteText}>Delete</span>
         </div>

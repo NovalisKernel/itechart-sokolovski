@@ -1,4 +1,4 @@
-import { CHANGE_SEARCH_STRING, DELETE_CONTACT} from 'store/actionTypes'
+import { CHANGE_SEARCH_STRING, DELETE_CONTACT,EDIT_CONTACT} from 'store/actionTypes'
 
 const initialState = {
     data: [
@@ -28,7 +28,8 @@ const initialState = {
             topics: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
         },
     ],
-    searchString: ''
+    searchString: '',
+    editContactId: -1
 }
 
 function contactsReducer(state = initialState, { type, payload }) {
@@ -39,12 +40,17 @@ function contactsReducer(state = initialState, { type, payload }) {
                 searchString: payload,
                 filteredContacts: state.searchString ? state.data.filter(item => item.name.includes(payload)) : state.data
             }
-            case DELETE_CONTACT:
-                return{
-                    ...state,
-                    data:state.data.filter(item=>item.id!==payload)
-
-                }
+        case DELETE_CONTACT:
+            return{
+                ...state,
+                data:state.data.filter(item=>item.id!==payload),
+                editContactId:-1
+            }
+        case EDIT_CONTACT:
+            return{
+                ...state,
+                editContactId:payload
+            }
 
         default:
             return state;

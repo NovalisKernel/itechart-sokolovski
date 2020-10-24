@@ -2,9 +2,9 @@ import React from 'react';
 import styles from './styles.module.css';
 
 
-function Textarea(props){
+function Textarea({value}){
     return(
-        <textarea className={styles.textArea} name="">
+        <textarea className={styles.textArea} value={value} name="">
 
         </textarea>
     )
