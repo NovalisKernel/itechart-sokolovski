@@ -1,0 +1,66 @@
+.contact{
+    background: #fff;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 10px 10px 15px;
+    border-left: 4px solid #a16486;
+    /*#d0b1c2*/
+    /*#c5c5c5*/
+}
+.contact:hover{
+    box-shadow: 0 0 10px 1px #6b6a6a;
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.name{
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1px;
+}
+.post{
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 12px;
+}
+.decision{
+    margin-top: 7px;
+    font-size: 12px;
+    color: #818181;
+}
+.owner{
+    font-size: 12px;
+    color: #818181;
+}
+.actionSvg{
+    width: 14px;
+    height: 14px;
+    fill: #000;
+    margin-left: 7px;
+    cursor: pointer;
+}
+.actionSvg:hover{
+    fill: #ff0000;
+    transition: fill .3s;
+}
+.detractorAndDetails{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+.topic{
+    width: 14px;
+    height: 14px;
+    fill: #000;
+    cursor: pointer;
+}
+.topic:hover{
+    fill: #ff0000;
+    transition: fill .3s;
+}

@@ -3,10 +3,24 @@
     border: 1px solid #cc0000;
     color: #fff;
     font-weight: bold;
-    padding: 10px 10%;
+    transition: .5s background;
+    
 }
 .btn:hover{
     background: none;
     color: #cc0000;
     cursor: pointer;
+    transition: .5s background;
+}
+
+.btn.close{
+    background: #172b3a;
+    border: 1px solid #172b3a;
+    transition: .5s background;
+}
+.btn.close:hover{
+    background: none;
+    cursor: pointer;
+    color: #172b3a;
+    transition: .5s background;
 }

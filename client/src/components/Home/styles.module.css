@@ -48,7 +48,9 @@
 }
 .emptyContact button{
     margin-top: 40px;
+    padding: 10px 10%;
 }
+
 .main>img{
     width: 30%;
 }
@@ -89,6 +91,14 @@
     background: none;
     outline: none;
 }
+.actionRow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.actionRow>button{
+    padding: 10px 20px;
+}
 .notEmptyContact .sort .searchIcon:hover{
     cursor: auto;
 }
@@ -101,33 +111,4 @@
 }
 .notEmptyContact>img{
     width: 30%;
-}
-.notEmptyContact table{
-    width: 100%;
-    border: 1px solid #dddddd;
-    border-collapse: collapse;
-}
-.notEmptyContact table thead{
-    border-bottom: 1px solid #dddddd;
-    border-collapse: collapse;
-}
-.notEmptyContact table tr{
-    background: #fff;
-}
-.notEmptyContact table tr>td:first-child{
-    font-weight: bold;
-}
-.notEmptyContact table td{
-    text-align: center;
-    padding: 15px 0;
-}
-.notEmptyContact tbody>tr:nth-child(2n){
-    background: #f9f9f9;
-}
-.notEmptyContact td .editImg{
-    opacity: .5;
-}
-.notEmptyContact td .editImg:hover{
-    opacity: 1;
-    cursor: pointer;
 }
