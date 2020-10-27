@@ -2,7 +2,7 @@
     height: 100vh;
     width: 100%;
     background: rgba(0, 0, 0, 70%);
-    position: absolute;
+    position: fixed;
     top: 0;
     z-index: 1;
     display: flex;
@@ -12,6 +12,11 @@
     background: white;
     width: 35%;
     padding: 15px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
 }
 .titleRow{
     display: flex;

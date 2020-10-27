@@ -6,7 +6,7 @@ import ActionsModal from '../ActionsModal';
 import { useState } from 'react';
 
 
-function Table({ contacts, searchValue, openDetailsHandler }) {
+function Table({ contacts, openDetailsHandler }) {
     const [idActionModalOpen, setIdActionModal] = useState(null);
     return (
         <table className={styles.contactTable}>
@@ -25,9 +25,6 @@ function Table({ contacts, searchValue, openDetailsHandler }) {
             </thead>
             <tbody>
                 {contacts.map((contact) => {
-                    if (contact.name.indexOf(searchValue) === -1 && searchValue) {
-                        return null;
-                    }
                     return (
                         <tr key={contact.id}>
                             <td>{contact.name}</td>
@@ -45,7 +42,7 @@ function Table({ contacts, searchValue, openDetailsHandler }) {
                             <td className={styles.editTd}>
                                 <img onClick={() => idActionModalOpen !== contact.id ? setIdActionModal(contact.id) : setIdActionModal(null)}
                                     className={styles.editImg} src={point} alt="" />
-                                <ActionsModal id={contact.id} active={idActionModalOpen === contact.id ? true : false} />
+                                <ActionsModal closeActionsModal={()=>setIdActionModal(null)} id={contact.id} active={idActionModalOpen === contact.id ? true : false} />
                             </td>
                         </tr>
                     )

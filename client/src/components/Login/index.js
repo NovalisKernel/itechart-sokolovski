@@ -1,19 +1,10 @@
 import React from 'react';
 import styles from './styles.module.css';
-// import Input from 'components/common/Input';
-// import Button from 'components/common/Button';
 import logo from 'assets/img/logo.png';
 import { Formik } from 'formik';
 import validationSchema from './validationLoginSchema';
 
 function LoginPage() {
-  // const [emailValue, setEmailValue] = useState('');
-  // const [passValue, setPassValue] = useState('');
-
-
-  // const handleClick = () => {
-  //   alert(emailValue);
-  // };
   return (
     <div className={styles.main}>
       <div className={styles.leftLoginBlock}>

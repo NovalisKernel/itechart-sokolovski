@@ -3,7 +3,6 @@ import styles from './styles.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteContact } from 'store/contacts/actions';
 import { editContact } from 'store/contacts/actions';
-import { ReactComponent as Add } from 'assets/img/plus.svg';
 import { ReactComponent as Edit } from 'assets/img/pencil.svg';
 import { ReactComponent as Delete } from 'assets/img/delete.svg';
 import { ReactComponent as Topic } from 'assets/img/notes.svg';

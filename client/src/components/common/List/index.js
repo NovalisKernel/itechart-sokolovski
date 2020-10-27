@@ -3,7 +3,7 @@ import Contact from 'components/common/Contact';
 import styles from './styles.module.css';
 // import point from 'assets/img/vertical_point.png';
 
-function List({contacts,searchValue,openDetailsHandler}){
+function List({contacts,openDetailsHandler}){
 
     const priorityList = new Set();
     let lastPriority = null;
@@ -28,10 +28,7 @@ function List({contacts,searchValue,openDetailsHandler}){
                                  <h2>{priority} Priority</h2>
                                  <div className={styles.contacts}>
                                         {contacts.map((contact)=>{
-                                            if(contact.name.indexOf(searchValue)===-1 && searchValue){
-                                                return
-                                            }
-                                            else if(contact.level === priority){
+                                             if(contact.level === priority){
                                                     return (
                                                         <Contact 
                                                             openDetailsHandler={openDetailsHandler}

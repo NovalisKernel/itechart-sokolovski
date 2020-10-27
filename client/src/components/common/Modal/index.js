@@ -8,8 +8,10 @@ import Button from '../Button';
 
 function Modal({closeModal}){
     return(
-        <div className={styles.modal}>
-            <div className={styles.modalInfo}>
+        <>
+        <div className={styles.modal} onClick = {closeModal}>
+        </div>
+        <div className={styles.modalInfo}>
                 <div className={styles.titleRow}>
                     <h2 className={styles.title}>New Priority Contact</h2>
                     <CloseIcon className={styles.close} onClick = {closeModal}/>
@@ -47,7 +49,7 @@ function Modal({closeModal}){
 
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 
