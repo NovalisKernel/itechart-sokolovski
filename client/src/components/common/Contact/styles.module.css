@@ -4,8 +4,9 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 10px 10px 10px 15px;
+    padding: 15px;
     border-left: 4px solid #a16486;
+    width: 10%;
     /*#d0b1c2*/
     /*#c5c5c5*/
 }

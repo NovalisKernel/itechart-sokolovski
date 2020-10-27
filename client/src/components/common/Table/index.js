@@ -3,11 +3,11 @@ import styles from './styles.module.css';
 import point from 'assets/img/vertical_point.png';
 import { ReactComponent as Topic } from 'assets/img/notes.svg';
 import ActionsModal from '../ActionsModal';
-import {useState} from 'react';
+import { useState } from 'react';
 
 
-function Table({contacts,searchValue,openDetailsHandler}) {
-    const [idActionModalOpen,setIdActionModal] = useState(NaN);
+function Table({ contacts, searchValue, openDetailsHandler }) {
+    const [idActionModalOpen, setIdActionModal] = useState(null);
     return (
         <table className={styles.contactTable}>
             <thead>
@@ -19,13 +19,13 @@ function Table({contacts,searchValue,openDetailsHandler}) {
                     <td>Decision Right</td>
                     <td>Relationship Owner</td>
                     <td>PriorityTopics</td>
-                    
+
                     <td>&nbsp;</td>
                 </tr>
             </thead>
             <tbody>
                 {contacts.map((contact) => {
-                    if(contact.name.indexOf(searchValue)===-1 && searchValue){
+                    if (contact.name.indexOf(searchValue) === -1 && searchValue) {
                         return null;
                     }
                     return (
@@ -37,15 +37,15 @@ function Table({contacts,searchValue,openDetailsHandler}) {
                             <td>{contact.decision}</td>
                             <td>{contact.relatOwner}</td>
                             <td>
-                                <div onClick={()=>openDetailsHandler(contact.id)} className={styles.details}>
-                                    <Topic className={styles.topicIcon}/>
+                                <div onClick={() => openDetailsHandler(contact.id)} className={styles.details}>
+                                    <Topic className={styles.topicIcon} />
                                     Details
-                                </div>       
+                                </div>
                             </td>
                             <td className={styles.editTd}>
-                                <img onClick = {()=>idActionModalOpen!==contact.id?setIdActionModal(contact.id):setIdActionModal(NaN)} 
+                                <img onClick={() => idActionModalOpen !== contact.id ? setIdActionModal(contact.id) : setIdActionModal(null)}
                                     className={styles.editImg} src={point} alt="" />
-                                <ActionsModal id={contact.id} active = {idActionModalOpen === contact.id?true:false}/>
+                                <ActionsModal id={contact.id} active={idActionModalOpen === contact.id ? true : false} />
                             </td>
                         </tr>
                     )

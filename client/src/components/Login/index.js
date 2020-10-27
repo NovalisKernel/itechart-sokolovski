@@ -70,7 +70,7 @@ function LoginPage() {
               </form>
             )}
         </Formik>
-       
+
         <img src={logo} alt="" />
       </div>
       <div className={styles.rightLoginBlock}>

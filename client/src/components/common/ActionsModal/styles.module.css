@@ -5,7 +5,8 @@
     flex-direction: column;
     align-items: flex-start;
     position: absolute;
-    left: -195px;
+    left: -110px;
+    width: 105px;
     box-shadow: 1px 1px 10px 1px #bdbdbd;
     z-index: 2;
 }
