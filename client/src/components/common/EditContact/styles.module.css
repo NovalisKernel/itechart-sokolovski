@@ -116,3 +116,24 @@
     padding: 10px 50px;
     margin: 0 10px;
 }
+.formBtn{
+    background: #cc0000;
+    border: 1px solid #cc0000;
+    color: #fff;
+    font-weight: bold;
+    transition: .5s background;
+    padding: 10px 30px;
+}
+.formBtn:hover{
+    background: none;
+    color: #cc0000;
+    cursor: pointer;
+    transition: .5s background;
+}
+.modalInfo .error{
+    border: 1px solid #cc0000;
+}
+.errorText{
+    font-size: 12px;
+    color: #cc0000;
+}

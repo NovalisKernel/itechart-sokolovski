@@ -10,7 +10,6 @@ import { ReactComponent as Topic } from 'assets/img/notes.svg';
 
 
 function Contact({ contact, openDetailsHandler }) {
-    const contacts = useSelector(state => state.contacts)
     const dispatch = useDispatch();
     return (
         <div className={styles.contact}>
