@@ -6,7 +6,9 @@ import { ReactComponent as CloseIcon } from 'assets/img/close.svg';
 
 
 function Details({closeDetails,contactId}){
-    const contact = useSelector(state => state.contacts.data)[contactId];
+    const contacts = useSelector(state => state.contacts.data);
+    const contact = contacts.filter(item=>item.id===contactId)[0];
+
     return(
         <div className={styles.details}>
             <div onClick={closeDetails}  className={styles.underPopUp}>

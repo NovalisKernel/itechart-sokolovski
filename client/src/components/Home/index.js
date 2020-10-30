@@ -2,32 +2,19 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { changeSearchString } from "store/contacts/actions";
 import styles from './styles.module.css';
-import Input from 'components/common/Input';
-import Button from 'components/common/Button';
-import Table from 'components/common/Table';
-import List from 'components/common/List';
-import Modal from 'components/common/Modal';
-import Details from 'components/common/Details';
-import empty from 'assets/img/emptyImg.png';
-// import point from 'assets/img/vertical_point.png';
-import searchicon from 'assets/img/searchicon.png';
-import filter from 'assets/img/filter.png';
-import grid from 'assets/img/grid.png';
-import row from 'assets/img/row.png';
-import EditContact from 'components/common/EditContact';
-// import { ReactComponent as OkIcon } from 'assets/img/ok.svg';
-
+import {empty,searchicon,filter,grid,row} from 'assets'
+import {EditContact,Details,Modal,List,Table,Button,Input} from 'components/common'
 
 
 
 
 function Home() {
     const contacts = useSelector(state => state.contacts.data);
-    const editContactId = useSelector(state=>state.contacts.editContactId);
+    const editContactId = useSelector(state => state.contacts.editContactId);
     const searchString = useSelector(state => state.contacts.searchString);
-    const filterContacts = searchString?contacts.filter((contact)=>contact.name.includes(searchString)):contacts;
+    const filterContacts = searchString ? contacts.filter((contact) => contact.name.includes(searchString)) : contacts;
 
-    const editorContact = contacts.filter((contact)=>contact.id===editContactId);
+    const editorContact = contacts.filter((contact) => contact.id === editContactId);
 
     const dispatch = useDispatch();
     const [modalState, setModalState] = useState(false);
@@ -39,15 +26,6 @@ function Home() {
     const showList = (target) => {
         setIsContactsTable(false);
     }
-    let activeTable;
-    let activeList;
-
-    isContactsTable ? (activeTable = {
-        background: '#efefef'
-    }) :
-        (activeList = {
-            background: '#efefef'
-        });
 
 
     /*SEARCH START*/
@@ -58,12 +36,12 @@ function Home() {
     }
     /*SEARCH END*/
 
-    const [isDetails, setIsDetails] = useState({
-        open:false,
-        idClicked:0
-    });
+    // const [isDetails, setIsDetails] = useState({
+    //     open: false,
+    //     idClicked: 0
+    // });
 
-
+    const [isDetails, setIsDetails] = useState(null);
 
     return (
         <div className={styles.home}>
@@ -72,13 +50,13 @@ function Home() {
                 {/* <OkIcon /> */}
             </div>
             {
-                editContactId !== -1 ? <EditContact contact={editorContact[0]}/>:null
+                editContactId && <EditContact contact={editorContact[0]} />
             }
             {
-                modalState ? <Modal closeModal={() => setModalState(false)} /> : null
+                modalState && <Modal closeModal={() => setModalState(false)} />
             }
             {
-                isDetails.open ? <Details contactId={isDetails.idClicked} closeDetails={()=>setIsDetails({...isDetails,open:false,idClicked:0})}/> : null
+                isDetails && <Details contactId={isDetails} closeDetails={() => setIsDetails(null)} />
 
             }
 
@@ -100,13 +78,13 @@ function Home() {
                                 <Input type="text" placeholder="Search" value={searchString} handleChange={(e) => searchInputHandler(e.target.value)} />
                                 <img className={styles.searchIcon} src={searchicon} alt="" />
                                 <img className={styles.filter} src={filter} alt="" />
-                                <img onClick={(e) => showTable(e.target)} className={isContactsTable ? styles.active : styles.notActive} src={row} style={activeTable} alt="" />
-                                <img onClick={(e) => showList(e.target)} src={grid} style={activeList} alt="" />
+                                <img onClick={(e) => showTable(e.target)} className={isContactsTable ? styles.active : styles.notActive} src={row} alt="" />
+                                <img onClick={(e) => showList(e.target)} src={grid} className={isContactsTable ? styles.notActive : styles.active} alt="" />
                             </div>
                             <Button handleClick={() => { setModalState(!modalState) }} text="Add New Priority Contact" />
                         </div>
 
-                        {isContactsTable ? <Table openDetailsHandler={(id)=>setIsDetails({...isDetails,open:true,idClicked:id})} contacts={filterContacts} searchValue={searchValue} /> : <List openDetailsHandler={(id)=>setIsDetails({...isDetails,open:true,idClicked:id})} contacts={filterContacts} searchValue={searchValue} />}
+                        {isContactsTable ? <Table openDetailsHandler={(id) => setIsDetails(id)} contacts={filterContacts} searchValue={searchValue} /> : <List openDetailsHandler={(id) => setIsDetails(id)} contacts={filterContacts} searchValue={searchValue} />}
                     </div>
             }
         </div>

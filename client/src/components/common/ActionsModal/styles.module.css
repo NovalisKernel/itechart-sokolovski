@@ -1,3 +1,12 @@
+.darkModal{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: none;
+    z-index: 1;
+}
 .actionsModal{
     background: #fff;
     padding: 10px;
@@ -5,7 +14,8 @@
     flex-direction: column;
     align-items: flex-start;
     position: absolute;
-    left: -195px;
+    left: -110px;
+    width: 105px;
     box-shadow: 1px 1px 10px 1px #bdbdbd;
     z-index: 2;
 }
@@ -22,4 +32,7 @@
 }
 .actionsModal.active{
     display: flex;
+}
+.darkModal.active{
+    display: block;
 }
