@@ -2,9 +2,11 @@ import React from 'react';
 import styles from './styles.module.css';
 import logo from 'assets/img/logo.png';
 import { Formik } from 'formik';
+import { useDispatch } from 'react-redux';
 import validationSchema from './validationLoginSchema';
 
 function LoginPage() {
+  const dispatch = useDispatch();
   return (
     <div className={styles.main}>
       <div className={styles.leftLoginBlock}>
@@ -13,10 +15,7 @@ function LoginPage() {
           initialValues={{ email: '', password: '' }}
           validationSchema={validationSchema}
           onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 400);
+            // dispatch(login(values))
           }}
         >
           {({

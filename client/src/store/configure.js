@@ -3,8 +3,11 @@ import { logger } from 'redux-logger';
 import { routerMiddleware } from 'connected-react-router';
 import history from './history';
 import rootReducer from './reducer';
+import { getFromLocalStorage } from 'utils/tokenUtils';
 
-const initialState = {};
+const initialState = {
+  [auth.isAuth]: !!getFromLocalStorage
+};
 
 const middleWare = [logger, routerMiddleware(history)];
 

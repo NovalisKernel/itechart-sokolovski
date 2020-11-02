@@ -5,7 +5,8 @@ import contactsReducer from 'store/contacts/reducer'
 
 const rootReducer = combineReducers({
   router: connectRouter(history),
-  contacts: contactsReducer
+  contacts: contactsReducer,
+  auth
 });
 
 export default rootReducer;
