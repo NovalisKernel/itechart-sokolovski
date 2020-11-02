@@ -4,6 +4,8 @@ import logo from 'assets/img/logo.png';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import validationSchema from './validationLoginSchema';
+import { login } from "store/login/actions";
+
 
 function LoginPage() {
   const dispatch = useDispatch();
@@ -15,7 +17,7 @@ function LoginPage() {
           initialValues={{ email: '', password: '' }}
           validationSchema={validationSchema}
           onSubmit={(values, { setSubmitting }) => {
-            // dispatch(login(values))
+            dispatch(login(values));
           }}
         >
           {({

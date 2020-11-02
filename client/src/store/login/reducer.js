@@ -7,7 +7,7 @@ const initialState = {
     error: ''
 }
 
-function contactsReducer(state = initialState, { type, payload }) {
+function loginReducer(state = initialState, { type, payload }) {
     switch (type) {
         case LOGIN_FAILURE:
             return {
@@ -34,4 +34,4 @@ function contactsReducer(state = initialState, { type, payload }) {
     }
 }
 
-export default contactsReducer;
+export default loginReducer;

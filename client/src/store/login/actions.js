@@ -19,10 +19,10 @@ export function loginFailure(error) {
     }
 }
 
-export const login = (user) => async dispatch => {
+export const login = (userData) => async dispatch => {
     dispatch(loginRequest());
     try {
-        const response = await axios.post("http://localhost:3001/login", user);
+        const response = await axios.post("http://localhost:3001/login", userData);
         const { token, ...user } = response.data;
         dispatch(loginSuccess(user))
         localStorage.setItem('token', token)

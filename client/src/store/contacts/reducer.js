@@ -1,4 +1,8 @@
-import { CHANGE_SEARCH_STRING, DELETE_CONTACT,EDIT_CONTACT} from 'store/actionTypes'
+import { ADD_CONTACT_FAILURE, CHANGE_CONTACT_SUCCESS, CHANGE_SEARCH_STRING, 
+        DELETE_CONTACT,DELETE_CONTACT_FAILURE,DELETE_CONTACT_SUCCESS, EDIT_CONTACT,
+        GET_CONTACT_SUCCESS,GET_CONTACT_FAILURE,GET_CONTACT_REQUEST,
+        ADD_CONTACT_REQUEST,ADD_CONTACT_SUCCESS,CHANGE_CONTACT_REQUEST,CHANGE_CONTACT_FAILURE
+    ,   DELETE_CONTACT_REQUEST} from 'store/actionTypes'
 
 const initialState = {
     data: [
@@ -50,6 +54,54 @@ function contactsReducer(state = initialState, { type, payload }) {
             return{
                 ...state,
                 editContactId:payload
+            }
+        case GET_CONTACT_REQUEST:
+            return{
+                ...state
+            }
+        case GET_CONTACT_FAILURE:
+            return{
+                ...state
+            }
+        case GET_CONTACT_SUCCESS:
+            return{
+                ...state
+            }
+        case ADD_CONTACT_FAILURE:
+            return{
+                ...state,
+            }
+        case ADD_CONTACT_REQUEST:
+            return{
+                ...state
+            }
+        case ADD_CONTACT_SUCCESS:
+            return{
+                ...state
+            }
+        case CHANGE_CONTACT_SUCCESS:
+            return{
+                ...state,
+            }
+        case CHANGE_CONTACT_FAILURE:
+            return{
+                ...state,
+            }
+        case CHANGE_CONTACT_REQUEST:
+            return{
+                ...state
+            }
+        case DELETE_CONTACT_FAILURE:
+            return{
+                ...state
+            }
+        case DELETE_CONTACT_REQUEST:
+            return{
+                ...state,
+            }
+        case DELETE_CONTACT_SUCCESS:
+            return{
+                ...state
             }
 
         default:

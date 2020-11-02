@@ -34,12 +34,6 @@ function Home() {
         setSearchValue(value);
         dispatch(changeSearchString(value));
     }
-    /*SEARCH END*/
-
-    // const [isDetails, setIsDetails] = useState({
-    //     open: false,
-    //     idClicked: 0
-    // });
 
     const [isDetails, setIsDetails] = useState(null);
 
