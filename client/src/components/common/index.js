@@ -10,13 +10,4 @@ import Table from 'components/common/Table';
 import Textarea from 'components/common/Textarea';
 
 
-export {ActionsModal};
-export {Button};
-export {Contact};
-export {Details};
-export {EditContact};
-export {Input};
-export {List};
-export {Modal};
-export {Table};
-export {Textarea};
+export {ActionsModal,Button,Contact,Details,EditContact,Input,List,Modal,Table,Textarea};

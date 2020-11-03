@@ -8,9 +8,6 @@ import { editContact } from 'store/contacts/actions';
 function ActionsModal({ closeActionsModal, active, id }) {
     const cls = [styles.actionsModal];
     const dispatch = useDispatch();
-    if (active) {
-        cls.push(styles.active)
-    }
     return (
         <>
             <div onClick={closeActionsModal} className={[styles.darkModal, active ? styles.active : ''].join(' ')}></div>
