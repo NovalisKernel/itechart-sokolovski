@@ -7,6 +7,7 @@ import { getFromLocalStorage } from 'utils/tokenUtils';
 import thunk from 'redux-thunk';
 
 
+
 const getInitialState = () => {
   const token = getFromLocalStorage();
   if (token) {
