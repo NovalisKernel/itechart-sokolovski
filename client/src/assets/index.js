@@ -4,8 +4,4 @@ import filter from 'assets/img/filter.png';
 import grid from 'assets/img/grid.png';
 import row from 'assets/img/row.png';
 
-export {empty};
-export {searchicon};
-export {filter};
-export {grid};
-export {row};
+export {empty,searchicon,filter,grid,row};

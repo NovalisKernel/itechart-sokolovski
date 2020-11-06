@@ -2,21 +2,26 @@ import React from 'react';
 import styles from './styles.module.css';
 import logo from 'assets/img/logo.png';
 import { Formik } from 'formik';
+import { useDispatch,useSelector} from 'react-redux';
 import validationSchema from './validationLoginSchema';
+import { login } from "store/login/actions";
+import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 function LoginPage() {
+  const dispatch = useDispatch();
+  const isRequesting = useSelector(state=>state.auth.isRequesting);
   return (
     <div className={styles.main}>
+      {isRequesting && <div className={styles.preload}><CircularProgress /></div>}
       <div className={styles.leftLoginBlock}>
         <h1>Coro</h1>
         <Formik
           initialValues={{ email: '', password: '' }}
           validationSchema={validationSchema}
           onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 400);
+            dispatch(login(values));
           }}
         >
           {({

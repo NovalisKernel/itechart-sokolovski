@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles.module.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { deleteContact } from 'store/contacts/actions';
 import { editContact } from 'store/contacts/actions';
 import { ReactComponent as Edit } from 'assets/img/pencil.svg';

@@ -5,9 +5,12 @@ import { Formik } from 'formik';
 import validationSchema from './validationContactSchema';
 import { ReactComponent as CloseIcon } from 'assets/img/close.svg';
 import Button from '../Button';
+import {addContact} from 'store/contacts/actions';
+import {useDispatch} from 'react-redux';
 
 
 function Modal({closeModal}){
+    const dispatch = useDispatch();
     return(
         <>
         <div className={styles.modal} onClick = {closeModal}>
@@ -16,11 +19,7 @@ function Modal({closeModal}){
             initialValues={{ name: '', decision: '',promoter:'',level:'',relationship:'',topics:''}}
             validationSchema={validationSchema}
             onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-                closeModal();
-            }, 400);
+                dispatch(addContact(values))
             }}
         >
         {({

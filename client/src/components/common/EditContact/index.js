@@ -8,6 +8,9 @@ import validationSchema from './validationContactSchema';
 import {useSelector,useDispatch} from 'react-redux';
 import {editContact} from 'store/contacts/actions';
 import {deleteContact} from 'store/contacts/actions';
+import {changeContact} from 'store/contacts/actions';
+import {deletedContact} from 'store/contacts/actions';
+
 
 
 
@@ -23,11 +26,10 @@ function EditContact({contact}){
             initialValues={{decision: contact.decision,promoter:contact.promoter,level:contact.level,relationship:contact.relatOwner,topics:contact.topics}}
             validationSchema={validationSchema}
             onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-                dispatch(editContact(null))
-            }, 400);
+            
+                dispatch(editContact(null));
+                dispatch(changeContact(values));
+            
             }}
         >
             {({
@@ -43,14 +45,18 @@ function EditContact({contact}){
             <form className={styles.modalInfo} onSubmit={handleSubmit}>
             <div className={styles.titleRow}>
                 <h2 className={styles.title}>Edit Priority Contact</h2>
-                <CloseIcon className={styles.close} onClick = {()=>dispatch(editContact(null))}/>
+                <CloseIcon className={styles.close} onClick = {()=> dispatch(editContact(null))}/>
             </div>
             <div className={styles.contactBlock}>
                 <div className={styles.contactGeneralText}>
                     <h2 className={styles.contactName}>{contact.name}</h2>
                     <span className={styles.contactJob}>{contact.job}</span>
                 </div>
-                <h4 onClick={()=>dispatch(deleteContact(editContactId))} className={styles.deleteText}>Delete the contact</h4>
+                <h4 onClick={()=>{
+                    dispatch(deleteContact(editContactId))
+                    dispatch(deletedContact(editContactId))
+                    }} 
+                    className={styles.deleteText}>Delete the contact</h4>
             </div>
             <div className={styles.doubleInputField}>
                 <div className={styles.aloneInputField}>

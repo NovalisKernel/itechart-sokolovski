@@ -1,3 +1,5 @@
+@import "~materialize-css/dist/css/materialize.min.css";
+
 *{
     margin: 0;
     padding: 0;
@@ -108,4 +110,17 @@ p{
     color: #ffdd48;
     font-size: 155px;
     font-weight: bold;
+}
+.main>.preload{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255,255,255,0.6);
+    z-index: 10;
+    width: 100%;
 }

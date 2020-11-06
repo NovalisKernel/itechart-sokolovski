@@ -1,4 +1,10 @@
-import { CHANGE_SEARCH_STRING, DELETE_CONTACT,EDIT_CONTACT} from 'store/actionTypes'
+import {
+    ADD_CONTACT_FAILURE, CHANGE_CONTACT_SUCCESS, CHANGE_SEARCH_STRING,
+    DELETE_CONTACT, DELETE_CONTACT_FAILURE, DELETE_CONTACT_SUCCESS, EDIT_CONTACT,
+    GET_CONTACT_SUCCESS, GET_CONTACT_FAILURE, GET_CONTACT_REQUEST,
+    ADD_CONTACT_REQUEST, ADD_CONTACT_SUCCESS, CHANGE_CONTACT_REQUEST, CHANGE_CONTACT_FAILURE
+    , DELETE_CONTACT_REQUEST
+} from 'store/actionTypes'
 
 const initialState = {
     data: [
@@ -29,7 +35,9 @@ const initialState = {
         },
     ],
     searchString: '',
-    editContactId: null
+    editContactId: null,
+    error: '',
+    isRequestion:false
 }
 
 function contactsReducer(state = initialState, { type, payload }) {
@@ -41,15 +49,83 @@ function contactsReducer(state = initialState, { type, payload }) {
                 filteredContacts: state.searchString ? state.data.filter(item => item.name.includes(payload)) : state.data
             }
         case DELETE_CONTACT:
-            return{
+            return {
                 ...state,
-                data:state.data.filter(item=>item.id!==payload),
-                editContactId:null
+                data: state.data.filter(item => item.id !== payload),
+                editContactId: null
             }
         case EDIT_CONTACT:
-            return{
+            return {
                 ...state,
-                editContactId:payload
+                editContactId: payload
+            }
+        case GET_CONTACT_FAILURE:
+            return {
+                ...state,
+                error: payload,
+                isRequestion:false
+            }
+        case GET_CONTACT_REQUEST:
+            return {
+                ...state,
+                isRequestion:true
+            }
+
+        case GET_CONTACT_SUCCESS:
+            return {
+                ...state,
+                isRequestion:false
+            }
+        case ADD_CONTACT_FAILURE:
+            return {
+                ...state,
+                error: payload,
+                isRequestion:false
+            }
+        case ADD_CONTACT_REQUEST:
+            return {
+                ...state,
+                isRequestion:true
+            }
+        case ADD_CONTACT_SUCCESS:
+            return {
+                ...state,
+                data:payload,
+                isRequestion:false
+            }
+        case CHANGE_CONTACT_SUCCESS:
+            return {
+                ...state,
+                data:payload,
+                isRequestion:false
+            }
+        case CHANGE_CONTACT_FAILURE:
+            return {
+                ...state,
+                error: payload,
+                isRequestion:false
+            }
+        case CHANGE_CONTACT_REQUEST:
+            return {
+                ...state,
+                isRequestion:true
+            }
+        case DELETE_CONTACT_FAILURE:
+            return {
+                ...state,
+                error: payload,
+                isRequestion:false
+            }
+        case DELETE_CONTACT_REQUEST:
+            return {
+                ...state,
+                isRequestion:true
+            }
+        case DELETE_CONTACT_SUCCESS:
+            return {
+                ...state,
+                data:payload,
+                isRequestion:false
             }
 
         default:
