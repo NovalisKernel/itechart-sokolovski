@@ -75,10 +75,13 @@
     font-style: italic;
 }
 .notEmptyContact .sort img{
-    width: 15px;
+    width: 100%;
     background: #fff;
-    padding: 11px;
+    padding: 10px;
     outline: 1px solid #dddddd;
+}
+.sort>img{
+    
 }
 .notEmptyContact .sort img:hover{
     cursor: pointer;
@@ -90,6 +93,8 @@
     padding: 0;
     background: none;
     outline: none;
+    width: auto;
+    height: auto;
 }
 .actionRow{
     display: flex;
@@ -105,10 +110,14 @@
 .notEmptyContact .sort .filter{
     margin: 0 20px;
     height: 100%;
+    width: 100%;
 }
 .notEmptyContact .sort .active{
     background: #efefef;
 }
 .notEmptyContact>img{
     width: 30%;
+}
+.row{
+    width: 15px;
 }

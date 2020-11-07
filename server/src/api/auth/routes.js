@@ -1,13 +1,11 @@
 import { Router } from 'express';
-import LoginConroller from './controller';
-
+import { LoginController, RegController } from './controller';
 
 const router = Router();
 
 // /login
-router.post(
-    '/',
-    LoginConroller
-  );
+router.post('/', LoginController);
 
-  export default router;
+router.post('/reg', RegController);
+
+export default router;
