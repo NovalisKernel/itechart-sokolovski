@@ -4,6 +4,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import winston from './config/winston';
 import router from './routes';
+import initializeDbPostgres from './config/postgres';
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+initializeDbPostgres(() => {});
 app.use('/', router);
 app.get('*', function(req, res, next) {
   const err = new Error('Page Not Found');
