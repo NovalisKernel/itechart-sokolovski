@@ -1,8 +1,12 @@
 import Contacts from '../../models/Contacts';
+import sequelize from 'sequelize';
 
 const getContacts = async () => {
-  const contacts = await Contacts.findAll({ raw: true, nest: true });
-  console.log(contacts);
+  const contacts = await Contacts.findAll({
+    raw: true,
+    nest: true,
+    order: sequelize.literal('id')
+  });
   return contacts;
 };
 
@@ -25,7 +29,11 @@ const addContact = async (name, job, decision, promoter, level, relationship, to
     topics
   });
   await contact.save();
-  const allContacts = await Contacts.findAll({ raw: true, nest: true });
+  const allContacts = await Contacts.findAll({
+    raw: true,
+    nest: true,
+    order: sequelize.literal('id')
+  });
   return allContacts;
 };
 
@@ -43,13 +51,21 @@ const changeContact = async (
     { name, job, decision, promoter, level, relatOwner: relationship, topics },
     { where: { id } }
   );
-  const allContacts = await Contacts.findAll({ raw: true, nest: true });
+  const allContacts = await Contacts.findAll({
+    raw: true,
+    nest: true,
+    order: sequelize.literal('id')
+  });
   return allContacts;
 };
 
 const deleteContact = async id => {
-  const contact = await Contacts.destroy({ where: { id } });
-  const allContacts = await Contacts.findAll({ raw: true, nest: true });
+  await Contacts.destroy({ where: { id } });
+  const allContacts = await Contacts.findAll({
+    raw: true,
+    nest: true,
+    order: sequelize.literal('id')
+  });
   return allContacts;
 };
 

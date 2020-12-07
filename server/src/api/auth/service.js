@@ -18,22 +18,27 @@ const loginUser = async (email, password) => {
 
   const token = jwt.sign(
     {
-      userName: user.name
+      userName: user.name,
+      id: user.id
     },
     jwtSecret,
     { expiresIn: '1h' }
   );
-
-  return token;
+  const resObj = {
+    token,
+    user: user.name
+  };
+  return resObj;
+  // return token;
 };
 
-const regUser = async (email, password) => {
+const regUser = async (email, password, name) => {
   const candidate = await User.findOne({ where: { email }, raw: true, nest: true });
   if (candidate) {
     throw new Error('Пользователь уже существует');
   }
   const hashPassword = await bcrypt.hash(password, 12);
-  const user = await User.create({ email, password: hashPassword });
+  const user = await User.create({ email, password: hashPassword, name });
   await user.save();
   return user;
 };

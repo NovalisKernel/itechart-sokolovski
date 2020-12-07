@@ -8,6 +8,7 @@ import List from 'components/common/List';
 import Modal from 'components/common/Modal';
 import Table from 'components/common/Table';
 import Textarea from 'components/common/Textarea';
+import Registration from 'components/common/Registration';
 
 
-export {ActionsModal,Button,Contact,Details,EditContact,Input,List,Modal,Table,Textarea};
+export {ActionsModal,Button,Contact,Details,EditContact,Input,List,Modal,Table,Textarea,Registration};

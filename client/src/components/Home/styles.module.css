@@ -1,3 +1,4 @@
+@import "~materialize-css/dist/css/materialize.min.css";
 .home{
     background: #f4f4f4;
     min-height: 100vh;
@@ -80,9 +81,7 @@
     padding: 10px;
     outline: 1px solid #dddddd;
 }
-.sort>img{
-    
-}
+
 .notEmptyContact .sort img:hover{
     cursor: pointer;
 }
@@ -120,4 +119,17 @@
 }
 .row{
     width: 15px;
+}
+.preload{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255,255,255,0.6);
+    z-index: 10;
+    width: 100%;
 }

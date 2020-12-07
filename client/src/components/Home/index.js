@@ -1,22 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { changeSearchString } from "store/contacts/actions";
+import { changeSearchString, getContacts } from "store/contacts/actions";
 import styles from './styles.module.css';
-import {empty,searchicon,filter,grid,row} from 'assets'
-import {EditContact,Details,Modal,List,Table,Button,Input} from 'components/common'
+import { empty, searchicon, filter, grid, row } from 'assets'
+import { EditContact, Details, Modal, List, Table, Button, Input } from 'components/common';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 
 
 function Home() {
+    const dispatch = useDispatch();
+    dispatch(getContacts);
+
+    useEffect(() => {
+        dispatch(getContacts())
+    }, [dispatch])
+    
+    const user = useSelector(state => state.auth.user);
+    console.log('User',user);
+    const isRequesting = useSelector(state => state.contacts.isRequestion);
     const contacts = useSelector(state => state.contacts.data);
     const editContactId = useSelector(state => state.contacts.editContactId);
     const searchString = useSelector(state => state.contacts.searchString);
     const filterContacts = searchString ? contacts.filter((contact) => contact.name.includes(searchString)) : contacts;
-
     const editorContact = contacts.filter((contact) => contact.id === editContactId);
 
-    const dispatch = useDispatch();
+
+
     const [modalState, setModalState] = useState(false);
     const [isContactsTable, setIsContactsTable] = useState(true);
 
@@ -40,11 +51,12 @@ function Home() {
     return (
         <div className={styles.home}>
             <div className={styles.menu}>
-                <button>LogOut</button>
+                <span className={styles.userName}>{user.userName}</span> <button>LogOut</button>
                 {/* <OkIcon /> */}
             </div>
+            {isRequesting && <div className={styles.preload}><CircularProgress /></div>}
             {
-                editContactId && <EditContact contact={editorContact[0]} />
+                (contacts.length !== 0) && editContactId && <EditContact contact={editorContact[0]} />
             }
             {
                 modalState && <Modal closeModal={() => setModalState(false)} />

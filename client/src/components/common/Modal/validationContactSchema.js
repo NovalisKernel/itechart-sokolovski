@@ -2,6 +2,7 @@ import * as yup from 'yup';
 
 let schema = yup.object().shape({
     name: yup.string().required('Поле обязательное для заполенения'),
+    job: yup.string().required('Поле обязательное для заполенения'),
     decision: yup.string().required('Поле обязательное для заполенения'),
     promoter: yup.string().required('Поле обязательное для заполенения'),
     level: yup.string().required('Поле обязательное для заполенения'),

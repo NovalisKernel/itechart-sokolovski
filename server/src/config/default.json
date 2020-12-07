@@ -1,3 +1,4 @@
 {
-    "jwtSecret":"teddy bear itechArt"
+    "jwtSecret":"teddy bear itechArt",
+    "jwtTimeToLive":"1h"
 }
