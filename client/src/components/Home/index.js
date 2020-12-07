@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { changeSearchString, getContacts } from "store/contacts/actions";
+import { changeSearchString, getContacts, logOut } from "store/contacts/actions";
 import styles from './styles.module.css';
 import { empty, searchicon, filter, grid, row } from 'assets'
 import { EditContact, Details, Modal, List, Table, Button, Input } from 'components/common';
@@ -14,7 +14,10 @@ function Home() {
     dispatch(getContacts);
 
     useEffect(() => {
-        dispatch(getContacts())
+        dispatch(getContacts());
+        if(!localStorage.getItem('token')){
+            dispatch(logOut());
+        }
     }, [dispatch])
     
     const user = useSelector(state => state.auth.user);
@@ -51,7 +54,7 @@ function Home() {
     return (
         <div className={styles.home}>
             <div className={styles.menu}>
-                <span className={styles.userName}>{user.userName}</span> <button>LogOut</button>
+                <span className={styles.userName}>{user.userName}</span> <button onClick={()=>dispatch(logOut())}>LogOut</button>
                 {/* <OkIcon /> */}
             </div>
             {isRequesting && <div className={styles.preload}><CircularProgress /></div>}

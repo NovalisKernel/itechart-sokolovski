@@ -1,4 +1,4 @@
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, REG_FAILURE,REG_SUCCESS,REG_REQUEST} from 'store/actionTypes'
+import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, REG_FAILURE,REG_SUCCESS,REG_REQUEST,LOG_OUT} from 'store/actionTypes'
 
 const initialState = {
     isRequesting: false,
@@ -46,7 +46,11 @@ function loginReducer(state = initialState, { type, payload }) {
                 isRequesting: true
 
             }
-
+        case LOG_OUT:
+            return{
+                ...state,
+                isAuth:false
+            }
         default:
             return state;
     }

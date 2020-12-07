@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {useState} from 'react';
 import styles from './styles.module.css';
 import logo from 'assets/img/logo.png';
@@ -8,13 +8,21 @@ import validationSchema from './validationLoginSchema';
 import { login } from "store/login/actions";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {Registration} from 'components/common'
+import history from 'store/history';
 
 
 
 function LoginPage() {
+  
   const [isRegModal,setIsRegModal] = useState(false);
   const dispatch = useDispatch();
   const isRequesting = useSelector(state=>state.auth.isRequesting);
+  const isAuth = useSelector(state=>state.auth.isAuth);
+  useEffect(()=>{
+    if(isAuth){
+      history.push('/contacts');
+    }
+  },[isAuth]);
   return (
     <div className={styles.main}>
       {isRequesting && <div className={styles.preload}><CircularProgress /></div>}

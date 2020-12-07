@@ -3,7 +3,8 @@ import {
     DELETE_CONTACT, DELETE_CONTACT_FAILURE, DELETE_CONTACT_SUCCESS, EDIT_CONTACT,
     GET_CONTACT_SUCCESS, GET_CONTACT_FAILURE, GET_CONTACT_REQUEST,
     ADD_CONTACT_REQUEST, ADD_CONTACT_SUCCESS, CHANGE_CONTACT_REQUEST, CHANGE_CONTACT_FAILURE
-    , DELETE_CONTACT_REQUEST
+    , DELETE_CONTACT_REQUEST,
+    LOG_OUT
 } from 'store/actionTypes'
 
 const initialState = {
@@ -129,7 +130,10 @@ function contactsReducer(state = initialState, { type, payload }) {
                 editContactId:null,
                 isRequestion:false
             }
-
+        case LOG_OUT:
+            return{
+                ...state,
+            }
         default:
             return state;
     }

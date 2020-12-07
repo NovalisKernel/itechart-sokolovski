@@ -3,7 +3,8 @@ import {CHANGE_SEARCH_STRING, EDIT_CONTACT,
         GET_CONTACT_FAILURE,GET_CONTACT_REQUEST,GET_CONTACT_SUCCESS,
         ADD_CONTACT_FAILURE,ADD_CONTACT_REQUEST,ADD_CONTACT_SUCCESS,
         CHANGE_CONTACT_FAILURE,CHANGE_CONTACT_REQUEST,CHANGE_CONTACT_SUCCESS,
-        DELETE_CONTACT_FAILURE,DELETE_CONTACT_REQUEST,DELETE_CONTACT_SUCCESS} from 'store/actionTypes';
+        DELETE_CONTACT_FAILURE,DELETE_CONTACT_REQUEST,DELETE_CONTACT_SUCCESS,LOG_OUT} from 'store/actionTypes';
+import history from '../history';
 
 
 
@@ -96,7 +97,13 @@ export function deleteContactFailure(error) {
         payload: error
     }
 }
-
+export function logOut(){
+    localStorage.clear();
+    history.push('/');
+    return{
+        type:LOG_OUT
+    }
+}
 
 export const getContacts = (user) => async dispatch => {
     dispatch(getContactRequest());
