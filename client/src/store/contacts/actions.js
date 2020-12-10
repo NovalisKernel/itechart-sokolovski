@@ -1,9 +1,10 @@
 import axios from 'axios';
-import {CHANGE_SEARCH_STRING, DELETE_CONTACT, EDIT_CONTACT,
+import {CHANGE_SEARCH_STRING, EDIT_CONTACT,
         GET_CONTACT_FAILURE,GET_CONTACT_REQUEST,GET_CONTACT_SUCCESS,
         ADD_CONTACT_FAILURE,ADD_CONTACT_REQUEST,ADD_CONTACT_SUCCESS,
         CHANGE_CONTACT_FAILURE,CHANGE_CONTACT_REQUEST,CHANGE_CONTACT_SUCCESS,
-        DELETE_CONTACT_FAILURE,DELETE_CONTACT_REQUEST,DELETE_CONTACT_SUCCESS} from 'store/actionTypes';
+        DELETE_CONTACT_FAILURE,DELETE_CONTACT_REQUEST,DELETE_CONTACT_SUCCESS,LOG_OUT} from 'store/actionTypes';
+import history from '../history';
 
 
 
@@ -13,12 +14,12 @@ export function changeSearchString(value) {
         payload: value
     }
 }
-export function deleteContact(value) {
-    return {
-        type: DELETE_CONTACT,
-        payload: value
-    }
-}
+// export function deleteContact(value) {
+//     return {
+//         type: DELETE_CONTACT,
+//         payload: value
+//     }
+// }
 export function editContact(value) {
     return {
         type: EDIT_CONTACT,
@@ -96,13 +97,19 @@ export function deleteContactFailure(error) {
         payload: error
     }
 }
-
+export function logOut(){
+    localStorage.clear();
+    history.push('/');
+    return{
+        type:LOG_OUT
+    }
+}
 
 export const getContacts = (user) => async dispatch => {
     dispatch(getContactRequest());
     try {
         const response = await axios.get("http://localhost:3001/contacts");
-        dispatch(getContactSuccess(response.data))
+        dispatch(getContactSuccess(response.data.contacts))
 
     } catch (e) {
         dispatch(getContactFailure(e.message))
@@ -113,7 +120,7 @@ export const addContact = (newContact) => async dispatch => {
     dispatch(addContactRequest());
     try {
         const response = await axios.post("http://localhost:3001/contacts", newContact);
-        dispatch(addContactSuccess(response.data)) //Вернет все контакты
+        dispatch(addContactSuccess(response.data.contacts)) //Вернет все контакты
 
     } catch (e) {
         dispatch(addContactFailure(e.message))
@@ -123,8 +130,9 @@ export const addContact = (newContact) => async dispatch => {
 export const changeContact = (contact) => async dispatch => {
     dispatch(changeContactRequest());
     try {
-        const response = await axios.post("http://localhost:3001/contacts", contact);
-        dispatch(changeContactSuccess(response.data)) //Вернет все контакты
+        console.log('Contact on server',contact);
+        const response = await axios.put("http://localhost:3001/contacts", contact);
+        dispatch(changeContactSuccess(response.data.contacts)) //Вернет все контакты
 
     } catch (e) {
         dispatch(changeContactFailure(e.message))
@@ -134,8 +142,8 @@ export const changeContact = (contact) => async dispatch => {
 export const deletedContact = (contactId) => async dispatch => {
     dispatch(deleteContactRequest());
     try {
-        const response = await axios.post("http://localhost:3001/contacts", contactId);
-        dispatch(deleteContactSuccess(response.data)) //Вернет все контакты
+        const response = await axios.delete("http://localhost:3001/contacts", {data:{id:contactId}});
+        dispatch(deleteContactSuccess(response.data.contacts)) //Вернет все контакты
 
     } catch (e) {
         dispatch(deleteContactFailure(e.message))

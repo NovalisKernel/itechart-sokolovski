@@ -16,7 +16,7 @@ function Modal({closeModal}){
         <div className={styles.modal} onClick = {closeModal}>
         </div>
         <Formik 
-            initialValues={{ name: '', decision: '',promoter:'',level:'',relationship:'',topics:''}}
+            initialValues={{ name: '',job:'', decision: '',promoter:'',level:'',relationship:'',topics:''}}
             validationSchema={validationSchema}
             onSubmit={(values, { setSubmitting }) => {
                 dispatch(addContact(values))
@@ -47,6 +47,18 @@ function Modal({closeModal}){
                         value={values.name}
                     />
                     <span className={styles.errorText}>{errors.name && touched.name && errors.name}</span>
+                    
+                </div>
+                <div className={styles.contactBlock}>
+                    <span className={styles.contactText}>Job</span>
+                    <input className={errors.job && touched.job && errors.job?styles.error:''}
+                        type="text"
+                        name="job"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.job}
+                    />
+                    <span className={styles.errorText}>{errors.job && touched.job && errors.job}</span>
                     
                 </div>
                 <div className={styles.doubleInputField}>

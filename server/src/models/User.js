@@ -15,6 +15,9 @@ class User extends Sequelize.Model {
         },
         password: {
           type: Sequelize.STRING
+        },
+        name: {
+          type: Sequelize.STRING
         }
       },
       {

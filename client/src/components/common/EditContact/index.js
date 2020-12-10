@@ -7,7 +7,6 @@ import { Formik } from 'formik';
 import validationSchema from './validationContactSchema';
 import {useSelector,useDispatch} from 'react-redux';
 import {editContact} from 'store/contacts/actions';
-import {deleteContact} from 'store/contacts/actions';
 import {changeContact} from 'store/contacts/actions';
 import {deletedContact} from 'store/contacts/actions';
 
@@ -23,7 +22,7 @@ function EditContact({contact}){
             
         </div>
         <Formik
-            initialValues={{decision: contact.decision,promoter:contact.promoter,level:contact.level,relationship:contact.relatOwner,topics:contact.topics}}
+            initialValues={{id:contact.id,name:contact.name,job:contact.job,decision: contact.decision,promoter:contact.promoter,level:contact.level,relationship:contact.relatOwner,topics:contact.topics}}
             validationSchema={validationSchema}
             onSubmit={(values, { setSubmitting }) => {
             
@@ -53,7 +52,6 @@ function EditContact({contact}){
                     <span className={styles.contactJob}>{contact.job}</span>
                 </div>
                 <h4 onClick={()=>{
-                    dispatch(deleteContact(editContactId))
                     dispatch(deletedContact(editContactId))
                     }} 
                     className={styles.deleteText}>Delete the contact</h4>
