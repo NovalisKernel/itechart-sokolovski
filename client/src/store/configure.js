@@ -38,7 +38,7 @@ const initialState = getInitialState();
 
 
 
-const middleWare = [logger,thunk,routerMiddleware(history)];
+const middleWare = [logger, thunk, routerMiddleware(history)];
 
 // eslint-disable-next-line no-underscore-dangle
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

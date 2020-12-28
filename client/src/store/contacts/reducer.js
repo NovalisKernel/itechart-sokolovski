@@ -3,9 +3,9 @@ import {
     DELETE_CONTACT, DELETE_CONTACT_FAILURE, DELETE_CONTACT_SUCCESS, EDIT_CONTACT,
     GET_CONTACT_SUCCESS, GET_CONTACT_FAILURE, GET_CONTACT_REQUEST,
     ADD_CONTACT_REQUEST, ADD_CONTACT_SUCCESS, CHANGE_CONTACT_REQUEST, CHANGE_CONTACT_FAILURE
-    , DELETE_CONTACT_REQUEST,
-    LOG_OUT
-} from 'store/actionTypes'
+    , DELETE_CONTACT_REQUEST,LOG_OUT,CREATE_MODEL_OPENED, EDIT_MODEL_OPENED, SORT_CONTACT,OPEN_DELETE_MODAL} from 'store/actionTypes';
+import {sortBy} from 'lodash';
+
 
 const initialState = {
     data: [
@@ -38,7 +38,11 @@ const initialState = {
     searchString: '',
     editContactId: null,
     error: '',
-    isRequestion:true
+    isRequestion:true,
+    createModalOpened:false,
+    editModalOpened:false,
+    deleteModalOpened:null,
+    message:'',
 }
 
 function contactsReducer(state = initialState, { type, payload }) {
@@ -59,6 +63,26 @@ function contactsReducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 editContactId: payload
+            }
+        case CREATE_MODEL_OPENED:
+            return{
+                ...state,
+                createModalOpened: payload
+            }
+        case SORT_CONTACT:
+            return{
+                ...state,
+                data:sortBy(state.data,[payload])
+            }
+        case OPEN_DELETE_MODAL:
+            return{
+                ...state,
+                deleteModalOpened:payload
+            }
+        case EDIT_MODEL_OPENED:
+            return{
+                ...state,
+                editModalOpened: payload
             }
         case GET_CONTACT_FAILURE:
             return {
@@ -93,13 +117,15 @@ function contactsReducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 data:payload,
-                isRequestion:false
+                isRequestion:false,
+                createModalOpened:false
             }
         case CHANGE_CONTACT_SUCCESS:
             return {
                 ...state,
                 data:payload,
-                isRequestion:false
+                isRequestion:false,
+                editModalOpened:false
             }
         case CHANGE_CONTACT_FAILURE:
             return {
@@ -128,7 +154,8 @@ function contactsReducer(state = initialState, { type, payload }) {
                 ...state,
                 data:payload,
                 editContactId:null,
-                isRequestion:false
+                isRequestion:false,
+                deleteModalOpened:null
             }
         case LOG_OUT:
             return{

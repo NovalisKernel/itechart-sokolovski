@@ -25,7 +25,7 @@ function List({contacts,openDetailsHandler}){
                     priorityArray.map((priority)=>{
                         return(
                             <div key={priority} className={styles.priorityBlock}>
-                                 <h2>{priority} Priority</h2>
+                                 <h2 className={styles.priority}>{priority} Priority</h2>
                                  <div className={styles.contacts}>
                                         {contacts.map((contact)=>{
                                              if(contact.level === priority){

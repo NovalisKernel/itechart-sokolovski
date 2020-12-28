@@ -16,7 +16,7 @@ function Details({closeDetails,contactId}){
             </div>
             <div className={styles.popUp}>
                 <CloseIcon onClick={closeDetails} className={styles.close}/>
-                <h2>{contact.name} - {contact.job}</h2>
+                <h2 className={styles.title}>{contact.name} - {contact.job}</h2>
                 <div className={styles.topic}>
                     <div className={styles.rowOnText}>
                         <Topic className={styles.rowImg}/>Priorit topics for this individua:

@@ -6,9 +6,8 @@ import Button from '../Button';
 import { Formik } from 'formik';
 import validationSchema from './validationContactSchema';
 import {useSelector,useDispatch} from 'react-redux';
-import {editContact} from 'store/contacts/actions';
-import {changeContact} from 'store/contacts/actions';
-import {deletedContact} from 'store/contacts/actions';
+import {editContact,changeContact,openDeleteModal} from 'store/contacts/actions';
+
 
 
 
@@ -16,6 +15,7 @@ import {deletedContact} from 'store/contacts/actions';
 function EditContact({contact}){
     const editContactId = useSelector(state=>state.contacts.editContactId);
     const dispatch = useDispatch();
+
     return(
         <>
         <div className={styles.modal} onClick = {()=>dispatch(editContact(null))}>
@@ -52,7 +52,8 @@ function EditContact({contact}){
                     <span className={styles.contactJob}>{contact.job}</span>
                 </div>
                 <h4 onClick={()=>{
-                    dispatch(deletedContact(editContactId))
+                    dispatch(openDeleteModal(editContactId))
+                    /*dispatch(deletedContact(editContactId))*/
                     }} 
                     className={styles.deleteText}>Delete the contact</h4>
             </div>

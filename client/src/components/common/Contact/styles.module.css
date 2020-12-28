@@ -65,3 +65,14 @@
     fill: #ff0000;
     transition: fill .3s;
 }
+
+@media all and (max-width:1024px){
+    .contact{
+        width: 30%;
+    }
+}
+@media all and (max-width:676px){
+    .contact{
+        width: 50%;
+    }
+}

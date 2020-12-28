@@ -10,18 +10,10 @@ import {
 const router = Router();
 
 // /contacts
-router.get('/', passport.authenticate('jwt', { session: false }), GetContactsController);
+router.get('/', GetContactsController);
 
-router.post('/', passport.authenticate('jwt', { session: false }), AddContactsController);
-router.put(
-  '/',
-  passport.authenticate('jwt', { session: false }),
-  ChangeContactsController
-);
-router.delete(
-  '/',
-  passport.authenticate('jwt', { session: false }),
-  DeleteContactsController
-);
+router.post('/', AddContactsController);
+router.put('/', ChangeContactsController);
+router.delete('/', DeleteContactsController);
 
 export default router;

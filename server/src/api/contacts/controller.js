@@ -3,7 +3,7 @@ import { getContacts, addContact, changeContact, deleteContact } from './service
 const GetContactsController = async (req, res) => {
   try {
     const contacts = await getContacts();
-    res.json({ contacts });
+    res.json(contacts);
   } catch (e) {
     res.status(500).json({ message: e.message });
   }
@@ -21,7 +21,8 @@ const AddContactsController = async (req, res) => {
       relationship,
       topics
     );
-    res.json({ message: `Создан новый контакт ${name}`, contacts: allContacts });
+    // res.json({ message: `Создан новый контакт ${name}`, contacts: allContacts });
+    res.json(allContacts);
   } catch (e) {
     res.status(500).json({ message: e.message || 'Что-то пошло не так...' });
   }
@@ -40,7 +41,8 @@ const ChangeContactsController = async (req, res) => {
       relationship,
       topics
     );
-    res.json({ message: `Изменен контакт ${name}`, contacts: allContacts });
+    // res.json({ message: `Изменен контакт ${name}`, contacts: allContacts });
+    res.json(allContacts);
   } catch (e) {
     res.status(500).json({ message: e.message || 'Что-то пошло не так...' });
   }
@@ -50,7 +52,8 @@ const DeleteContactsController = async (req, res) => {
   try {
     const { id } = req.body;
     const allContacts = await deleteContact(id);
-    res.json({ message: `Удален контакт с id=${id}`, contacts: allContacts });
+    // res.json({ message: `Удален контакт с id=${id}`, contacts: allContacts });
+    res.json(allContacts);
   } catch (e) {
     res.status(500).json({ message: e.message || 'Что-то пошло не так...' });
   }

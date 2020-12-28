@@ -1,6 +1,6 @@
 import { loginUser, regUser } from './service';
 
-const LoginController = async (req, res) => {
+const loginController = async (req, res) => {
   try {
     const { email, password } = req.body;
     const resObj = await loginUser(email, password);
@@ -12,7 +12,7 @@ const LoginController = async (req, res) => {
   }
 };
 
-const RegController = async (req, res) => {
+const regController = async (req, res) => {
   try {
     const { email, password, name } = req.body;
     const newUser = await regUser(email, password, name);
@@ -24,4 +24,4 @@ const RegController = async (req, res) => {
   }
 };
 
-export { LoginController, RegController };
+export { loginController, regController };

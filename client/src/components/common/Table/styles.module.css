@@ -51,3 +51,6 @@
 .editTd{
     position: relative;
 }
+.tableHead{
+    cursor: pointer;
+}

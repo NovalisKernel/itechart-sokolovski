@@ -75,6 +75,11 @@ p{
     cursor: pointer;
     transition: .5s background;
 }
+.formBtn:disabled{
+    background: gray;
+    color: #fff;
+    border: 1px solid #000;
+}
 .form label{
     display: flex;
     flex-direction: column;

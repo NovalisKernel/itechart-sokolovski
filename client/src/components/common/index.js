@@ -9,6 +9,8 @@ import Modal from 'components/common/Modal';
 import Table from 'components/common/Table';
 import Textarea from 'components/common/Textarea';
 import Registration from 'components/common/Registration';
+import AlertDialog from 'components/common/AlertDialog';
 
 
-export {ActionsModal,Button,Contact,Details,EditContact,Input,List,Modal,Table,Textarea,Registration};
+
+export {ActionsModal,Button,Contact,Details,EditContact,Input,List,Modal,Table,Textarea,Registration,AlertDialog};

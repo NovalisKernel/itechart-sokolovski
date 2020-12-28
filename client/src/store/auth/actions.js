@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, REG_FAILURE, REG_REQUEST,REG_SUCCESS} from 'store/actionTypes'
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, REG_FAILURE, REG_REQUEST, REG_SUCCESS, LOG_OUT } from 'store/actionTypes'
 import history from '../history';
 
 export function loginRequest() {
@@ -36,6 +36,14 @@ export function regFailure(error) {
     }
 }
 
+export function logOut() {
+    localStorage.clear();
+    history.push('/');
+    return {
+        type: LOG_OUT
+    }
+}
+
 export const login = (userData) => async dispatch => {
     dispatch(loginRequest());
     try {
@@ -43,7 +51,7 @@ export const login = (userData) => async dispatch => {
         const response = await axios.post("http://localhost:3001/login", userData);
         const { token, ...user } = response.data;
         //setAuthToken(token)
-        
+
         localStorage.setItem('token', token)
         history.push('/contacts');
         dispatch(loginSuccess(user))
