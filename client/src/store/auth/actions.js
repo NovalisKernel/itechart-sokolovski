@@ -56,12 +56,11 @@ export function logOut() {
 export const login = userData => async dispatch => {
   dispatch(loginRequest());
   try {
-    console.log(userData);
     const response = await axios.post('/login', userData);
     const { token, ...user } = response.data;
     setAuthTokenHeader(token);
     localStorage.setItem('token', token);
-    history.push('/contacts');
+    history.push('/contacts?page=1');
     dispatch(loginSuccess(user));
   } catch (e) {
     dispatch(loginFailure(e.message));

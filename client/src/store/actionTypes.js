@@ -34,3 +34,5 @@ export const OPEN_DELETE_MODAL = 'OPEN_DELETE_MODAL';
 export const SORT_CONTACT = 'SORT_CONTACT';
 
 export const LOG_OUT = 'LOG_OUT';
+
+export const CONTACTS_COUNT = 'CONTACTS_COUNT';

@@ -19,6 +19,7 @@ import {
   EDIT_MODEL_OPENED,
   SORT_CONTACT,
   OPEN_DELETE_MODAL,
+  CONTACTS_COUNT,
 } from 'store/actionTypes';
 import { sortBy } from 'lodash';
 
@@ -53,6 +54,7 @@ const initialState = {
   editModalOpened: false,
   deleteModalOpened: null,
   message: '',
+  contactsCount: null,
 };
 
 function contactsReducer(state = initialState, { type, payload }) {
@@ -168,6 +170,11 @@ function contactsReducer(state = initialState, { type, payload }) {
         editContactId: null,
         isRequestion: false,
         deleteModalOpened: null,
+      };
+    case CONTACTS_COUNT:
+      return {
+        ...state,
+        contactsCount: payload,
       };
     case LOG_OUT:
       return {

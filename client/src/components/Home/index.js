@@ -18,13 +18,19 @@ import {
   AlertDialog,
 } from 'components/common';
 import CircularProgress from '@material-ui/core/CircularProgress';
+
+// import { MemoryRouter, Route } from 'react-router';
+// import { Link } from 'react-router-dom';
+// import Pagination from '@material-ui/lab/Pagination';
+// import PaginationItem from '@material-ui/lab/PaginationItem';
+
 import styles from './styles.module.css';
 
 function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const query = dispatch(getContacts());
+    dispatch(getContacts());
     // if (!localStorage.getItem('token')) {
     //   dispatch(logOut());
     // }
@@ -34,6 +40,9 @@ function Home() {
   const isRequesting = useSelector(state => state.contacts.isRequestion);
   const showCreateModal = useSelector(state => state.contacts.createModalOpened);
   // const showEditModal = useSelector(state => state.contacts.editModalOpened);
+  const contactsCount = useSelector(state => state.contacts.contactsCount);
+  const showContactsCount = 3;
+  const currentPage = +useSelector(state => state.router.location.query.page);
   const deleteModalOpened = useSelector(state => state.contacts.deleteModalOpened);
   const contacts = useSelector(state => state.contacts.data);
   const editContactId = useSelector(state => state.contacts.editContactId);
@@ -43,6 +52,12 @@ function Home() {
     : contacts;
   const editorContact = contacts.filter(contact => contact.id === editContactId);
 
+  const pageCount = Math.ceil(contactsCount / showContactsCount);
+  const pages = [];
+
+  for (let i = 1; i <= pageCount; i++) {
+    pages.push(i);
+  }
   // const [modalState, setModalState] = useState(false);
   const [isContactsTable, setIsContactsTable] = useState(true);
 
@@ -65,7 +80,9 @@ function Home() {
     <div className={styles.home}>
       <div className={styles.menu}>
         <span className={styles.userName}>{user.userName}</span>{' '}
-        <button onClick={() => dispatch(logOut())}>LOGOUT</button>
+        <button type="submit" onClick={() => dispatch(logOut())}>
+          LOGOUT
+        </button>
       </div>
       {isRequesting && (
         <div className={styles.preload}>
@@ -144,6 +161,48 @@ function Home() {
           )}
         </div>
       )}
+      <div className={styles.footer}>
+        <div className={styles.allContacts}>{contactsCount} contacts</div>
+        <div className={styles.contactLinks}>
+          {pages.map(page => {
+            return (
+              <button
+                type="submit"
+                key={page}
+                className={
+                  (currentPage === page && styles.contactLinkSelected) ||
+                  styles.contactLink
+                }
+                disabled={currentPage === page}
+              >
+                {page}
+              </button>
+            );
+          })}
+
+          {/* <MemoryRouter initialEntries={['/contacts']} initialIndex={1}>
+            <Route>
+              {({ location }) => {
+                const query = new URLSearchParams(location.search);
+                const page = parseInt(query.get('page') || '1', 10);
+                return (
+                  <Pagination
+                    page={page}
+                    count={pageCount}
+                    renderItem={item => (
+                      <PaginationItem
+                        component={Link}
+                        to={`/contacts?page=${item.page}`}
+                        {...item}
+                      />
+                    )}
+                  />
+                );
+              }}
+            </Route>
+          </MemoryRouter> */}
+        </div>
+      </div>
     </div>
   );
 }

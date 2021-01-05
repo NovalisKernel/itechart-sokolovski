@@ -7,7 +7,8 @@ const getContacts = async () => {
     nest: true,
     order: sequelize.literal('id')
   });
-  return contacts;
+  const countOfCOntacts = contacts.length;
+  return { contacts, countOfCOntacts };
 };
 
 const addContact = async (name, job, decision, promoter, level, relationship, topics) => {
@@ -66,7 +67,8 @@ const deleteContact = async id => {
     nest: true,
     order: sequelize.literal('id')
   });
-  return allContacts;
+  const countOfCOntacts = allContacts.length;
+  return { allContacts, countOfCOntacts };
 };
 
 export { getContacts, addContact, changeContact, deleteContact };

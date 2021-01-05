@@ -18,6 +18,7 @@ import {
   EDIT_MODEL_OPENED,
   SORT_CONTACT,
   OPEN_DELETE_MODAL,
+  CONTACTS_COUNT,
 } from 'store/actionTypes';
 
 export function changeSearchString(value) {
@@ -129,12 +130,19 @@ export function deleteContactFailure(error) {
     payload: error,
   };
 }
+export function countOfContacts(count) {
+  return {
+    type: CONTACTS_COUNT,
+    payload: count,
+  };
+}
 
 export const getContacts = user => async dispatch => {
   dispatch(getContactRequest());
   try {
     const response = await axios.get('/contacts');
-    dispatch(getContactSuccess(response.data));
+    dispatch(getContactSuccess(response.data.contacts));
+    dispatch(countOfContacts(response.data.countOfCOntacts));
   } catch (e) {
     dispatch(getContactFailure(e.message));
   }
@@ -164,7 +172,8 @@ export const deletedContact = contactId => async dispatch => {
   dispatch(deleteContactRequest());
   try {
     const response = await axios.delete('/contacts', { data: { id: contactId } });
-    dispatch(deleteContactSuccess(response.data));
+    dispatch(deleteContactSuccess(response.data.allContacts));
+    dispatch(countOfContacts(response.data.countOfCOntacts));
   } catch (e) {
     dispatch(deleteContactFailure(e.message));
   }
