@@ -1,6 +1,6 @@
 import { getContacts, addContact, changeContact, deleteContact } from './service';
 
-const GetContactsController = async (req, res) => {
+const getContactsController = async (req, res) => {
   try {
     const contacts = await getContacts();
     res.json(contacts);
@@ -9,7 +9,7 @@ const GetContactsController = async (req, res) => {
   }
 };
 
-const AddContactsController = async (req, res) => {
+const addContactsController = async (req, res) => {
   try {
     const { name, job, decision, promoter, level, relationship, topics } = req.body;
     const allContacts = await addContact(
@@ -28,7 +28,7 @@ const AddContactsController = async (req, res) => {
   }
 };
 
-const ChangeContactsController = async (req, res) => {
+const changeContactsController = async (req, res) => {
   try {
     const { id, name, job, decision, promoter, level, relationship, topics } = req.body;
     const allContacts = await changeContact(
@@ -48,7 +48,7 @@ const ChangeContactsController = async (req, res) => {
   }
 };
 
-const DeleteContactsController = async (req, res) => {
+const deleteContactsController = async (req, res) => {
   try {
     const { id } = req.body;
     const allContacts = await deleteContact(id);
@@ -60,8 +60,8 @@ const DeleteContactsController = async (req, res) => {
 };
 
 export {
-  GetContactsController,
-  AddContactsController,
-  ChangeContactsController,
-  DeleteContactsController
+  getContactsController,
+  addContactsController,
+  changeContactsController,
+  deleteContactsController
 };

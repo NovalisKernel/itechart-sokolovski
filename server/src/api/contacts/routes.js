@@ -1,19 +1,19 @@
 import { Router } from 'express';
 import passport from '../../config/passport';
 import {
-  GetContactsController,
-  AddContactsController,
-  ChangeContactsController,
-  DeleteContactsController
+  getContactsController,
+  addContactsController,
+  changeContactsController,
+  deleteContactsController
 } from './controller';
 
 const router = Router();
 
 // /contacts
-router.get('/', GetContactsController);
+router.get('/', getContactsController);
 
-router.post('/', AddContactsController);
-router.put('/', ChangeContactsController);
-router.delete('/', DeleteContactsController);
+router.post('/', addContactsController);
+router.put('/', changeContactsController);
+router.delete('/', deleteContactsController);
 
 export default router;

@@ -25,9 +25,9 @@ function Home() {
 
   useEffect(() => {
     const query = dispatch(getContacts());
-    if (!localStorage.getItem('token')) {
-      dispatch(logOut());
-    }
+    // if (!localStorage.getItem('token')) {
+    //   dispatch(logOut());
+    // }
   }, [dispatch]);
 
   const user = useSelector(state => state.auth.user);
