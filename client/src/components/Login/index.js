@@ -5,15 +5,12 @@ import logo from 'assets/img/logo.png';
 import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import validationSchema from './validationLoginSchema';
-import { login } from "store/auth/actions";
+import { login } from 'store/auth/actions';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { Registration } from 'components/common'
+import { Registration } from 'components/common';
 import history from 'store/history';
 
-
-
 function LoginPage() {
-
   const [isRegModal, setIsRegModal] = useState(false);
   const dispatch = useDispatch();
   const isRequesting = useSelector(state => state.auth.isRequesting);
@@ -25,7 +22,11 @@ function LoginPage() {
   }, [isAuth]);
   return (
     <div className={styles.main}>
-      {isRequesting && <div className={styles.preload}><CircularProgress /></div>}
+      {isRequesting && (
+        <div className={styles.preload}>
+          <CircularProgress />
+        </div>
+      )}
       {isRegModal && <Registration closeModal={() => setIsRegModal(false)} />}
       <div className={styles.leftLoginBlock}>
         <h1>Coro</h1>
@@ -46,10 +47,11 @@ function LoginPage() {
             isSubmitting,
             /* and other goodies */
           }) => (
-            <form method='post' className={styles.form} onSubmit={handleSubmit}>
-              <label htmlFor="" className={styles.formLabel}>
+            <form method="post" className={styles.form} onSubmit={handleSubmit}>
+              <label htmlFor="emailInput" className={styles.formLabel}>
                 <span className={styles.labelText}>Email </span>
                 <input
+                  id="emailInput"
                   className={styles.textField}
                   type="email"
                   name="email"
@@ -70,12 +72,19 @@ function LoginPage() {
                   value={values.password}
                 />
               </label>
-              <p onClick={() => { setIsRegModal(true) }} className={styles.offerToReg}>Have not account? Registred now!</p>
+              <p
+                onClick={() => {
+                  setIsRegModal(true);
+                }}
+                className={styles.offerToReg}
+              >
+                Have not account? Registred now!
+              </p>
 
               {errors.password && touched.password && errors.password}
               <button className={styles.formBtn} type="submit" disabled={isRequesting}>
                 Submit
-                </button>
+              </button>
             </form>
           )}
         </Formik>
@@ -87,6 +96,6 @@ function LoginPage() {
       </div>
     </div>
   );
-};
+}
 
 export default LoginPage;

@@ -1,42 +1,36 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import { logger } from 'redux-logger';
 import { routerMiddleware } from 'connected-react-router';
-import history from './history';
-import rootReducer from './reducer';
 import { getFromLocalStorage } from 'utils/tokenUtils';
 import thunk from 'redux-thunk';
-import setAuthTokenHeader from '../services/api/configure'
-
-
+import history from './history';
+import rootReducer from './reducer';
+import setAuthTokenHeader from '../services/api/configure';
 
 const getInitialState = () => {
   const token = getFromLocalStorage();
   if (token) {
-    setAuthTokenHeader(token)
+    setAuthTokenHeader(token);
     return {
       auth: {
         isRequesting: false,
         isAuth: true,
         user: {},
-        error: ''
+        error: '',
       },
-    }
+    };
   }
   return {
     auth: {
       isRequesting: false,
       isAuth: false,
       user: {},
-      error: ''
+      error: '',
     },
   };
 };
 
-
 const initialState = getInitialState();
-
-
-
 
 const middleWare = [logger, thunk, routerMiddleware(history)];
 
@@ -48,7 +42,6 @@ const store = createStore(
   initialState,
   composeEnhancers(applyMiddleware(...middleWare))
   // composeEnhancers(applyMiddleware([thunk,routerMiddleware(history)]))
-
 );
 // sagaMiddleware.run(rootSaga);
 export default store;
