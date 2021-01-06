@@ -1,13 +1,31 @@
 import Contacts from '../../models/Contacts';
 import sequelize from 'sequelize';
 
-const getContacts = async () => {
-  const contacts = await Contacts.findAll({
+// const getContacts = async () => {
+//   const contacts = await Contacts.findAll({
+//     raw: true,
+//     nest: true,
+//     order: sequelize.literal('id')
+//   });
+//   const countOfCOntacts = contacts.length;
+//   return { contacts, countOfCOntacts };
+// };
+
+const getContacts = async (page, count) => {
+  const allContacts = await Contacts.findAll({
     raw: true,
     nest: true,
     order: sequelize.literal('id')
   });
-  const countOfCOntacts = contacts.length;
+
+  const contacts = await Contacts.findAll({
+    limit: count,
+    raw: true,
+    nest: true,
+    offset: count * (page - 1),
+    order: sequelize.literal('id')
+  });
+  const countOfCOntacts = allContacts.length;
   return { contacts, countOfCOntacts };
 };
 

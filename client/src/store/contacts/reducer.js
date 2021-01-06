@@ -6,9 +6,12 @@ import {
   DELETE_CONTACT_FAILURE,
   DELETE_CONTACT_SUCCESS,
   EDIT_CONTACT,
-  GET_CONTACT_SUCCESS,
-  GET_CONTACT_FAILURE,
-  GET_CONTACT_REQUEST,
+  // GET_CONTACT_SUCCESS,
+  // GET_CONTACT_FAILURE,
+  // GET_CONTACT_REQUEST,
+  GET_PART_CONTACT_SUCCESS,
+  GET_PART_CONTACT_FAILURE,
+  GET_PART_CONTACT_REQUEST,
   ADD_CONTACT_REQUEST,
   ADD_CONTACT_SUCCESS,
   CHANGE_CONTACT_REQUEST,
@@ -98,19 +101,37 @@ function contactsReducer(state = initialState, { type, payload }) {
         ...state,
         editModalOpened: payload,
       };
-    case GET_CONTACT_FAILURE:
+    // case GET_CONTACT_FAILURE:
+    //   return {
+    //     ...state,
+    //     error: payload,
+    //     isRequestion: false,
+    //   };
+    // case GET_CONTACT_REQUEST:
+    //   return {
+    //     ...state,
+    //     isRequestion: true,
+    //   };
+
+    // case GET_CONTACT_SUCCESS:
+    //   return {
+    //     ...state,
+    //     data: payload,
+    //     isRequestion: false,
+    //   };
+    case GET_PART_CONTACT_FAILURE:
       return {
         ...state,
         error: payload,
         isRequestion: false,
       };
-    case GET_CONTACT_REQUEST:
+    case GET_PART_CONTACT_REQUEST:
       return {
         ...state,
         isRequestion: true,
       };
 
-    case GET_CONTACT_SUCCESS:
+    case GET_PART_CONTACT_SUCCESS:
       return {
         ...state,
         data: payload,

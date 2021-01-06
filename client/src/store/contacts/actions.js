@@ -2,9 +2,12 @@ import axios from 'axios';
 import {
   CHANGE_SEARCH_STRING,
   EDIT_CONTACT,
-  GET_CONTACT_FAILURE,
-  GET_CONTACT_REQUEST,
-  GET_CONTACT_SUCCESS,
+  // GET_CONTACT_FAILURE,
+  // GET_CONTACT_REQUEST,
+  // GET_CONTACT_SUCCESS,
+  GET_PART_CONTACT_FAILURE,
+  GET_PART_CONTACT_REQUEST,
+  GET_PART_CONTACT_SUCCESS,
   ADD_CONTACT_FAILURE,
   ADD_CONTACT_REQUEST,
   ADD_CONTACT_SUCCESS,
@@ -20,6 +23,7 @@ import {
   OPEN_DELETE_MODAL,
   CONTACTS_COUNT,
 } from 'store/actionTypes';
+import history from '../history';
 
 export function changeSearchString(value) {
   return {
@@ -59,20 +63,38 @@ export function editModalOpened(value) {
   };
 }
 
-export function getContactRequest() {
+// export function getContactRequest() {
+//   return {
+//     type: GET_CONTACT_REQUEST,
+//   };
+// }
+// export function getContactSuccess(contacts) {
+//   return {
+//     type: GET_CONTACT_SUCCESS,
+//     payload: contacts,
+//   };
+// }
+// export function getContactFailure(error) {
+//   return {
+//     type: GET_CONTACT_FAILURE,
+//     payload: error,
+//   };
+// }
+
+export function getPartContactRequest() {
   return {
-    type: GET_CONTACT_REQUEST,
+    type: GET_PART_CONTACT_REQUEST,
   };
 }
-export function getContactSuccess(contacts) {
+export function getPartContactSuccess(contacts) {
   return {
-    type: GET_CONTACT_SUCCESS,
+    type: GET_PART_CONTACT_SUCCESS,
     payload: contacts,
   };
 }
-export function getContactFailure(error) {
+export function getPartContactFailure(error) {
   return {
-    type: GET_CONTACT_FAILURE,
+    type: GET_PART_CONTACT_FAILURE,
     payload: error,
   };
 }
@@ -137,14 +159,32 @@ export function countOfContacts(count) {
   };
 }
 
-export const getContacts = user => async dispatch => {
-  dispatch(getContactRequest());
+// export const getContacts = user => async dispatch => {
+//   dispatch(getContactRequest());
+//   try {
+//     const response = await axios.get('/contacts');
+//     dispatch(getContactSuccess(response.data.contacts));
+//     dispatch(countOfContacts(response.data.countOfCOntacts));
+//   } catch (e) {
+//     dispatch(getContactFailure(e.message));
+//   }
+// };
+
+export const getPartContacts = paginationData => async dispatch => {
+  history.push(`/contacts?page=${paginationData.page}`);
+  dispatch(getPartContactRequest());
   try {
-    const response = await axios.get('/contacts');
-    dispatch(getContactSuccess(response.data.contacts));
+    const response = await axios.get('/contacts', {
+      params: {
+        page: paginationData.page,
+        count: paginationData.count,
+      },
+    });
+
+    dispatch(getPartContactSuccess(response.data.contacts));
     dispatch(countOfContacts(response.data.countOfCOntacts));
   } catch (e) {
-    dispatch(getContactFailure(e.message));
+    dispatch(getPartContactFailure(e.message));
   }
 };
 

@@ -1,8 +1,18 @@
 import { getContacts, addContact, changeContact, deleteContact } from './service';
 
+// const getContactsController = async (req, res) => {
+//   try {
+//     const contacts = await getContacts();
+//     res.json(contacts);
+//   } catch (e) {
+//     res.status(500).json({ message: e.message });
+//   }
+// };
+
 const getContactsController = async (req, res) => {
   try {
-    const contacts = await getContacts();
+    const { page, count } = req.query;
+    const contacts = await getContacts(page, count);
     res.json(contacts);
   } catch (e) {
     res.status(500).json({ message: e.message });

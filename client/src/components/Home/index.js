@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   changeSearchString,
-  getContacts,
+  // getContacts,
+  getPartContacts,
   createModalOpened,
 } from 'store/contacts/actions';
 import { logOut } from 'store/auth/actions';
@@ -28,21 +29,21 @@ import styles from './styles.module.css';
 
 function Home() {
   const dispatch = useDispatch();
+  const showContactsCount = 5;
+  const currentPage = +useSelector(state => state.router.location.query.page);
 
   useEffect(() => {
-    dispatch(getContacts());
+    dispatch(getPartContacts({ page: currentPage || 1, count: showContactsCount }));
     // if (!localStorage.getItem('token')) {
     //   dispatch(logOut());
     // }
-  }, [dispatch]);
+  }, [dispatch, currentPage, showContactsCount]);
 
   const user = useSelector(state => state.auth.user);
   const isRequesting = useSelector(state => state.contacts.isRequestion);
   const showCreateModal = useSelector(state => state.contacts.createModalOpened);
   // const showEditModal = useSelector(state => state.contacts.editModalOpened);
   const contactsCount = useSelector(state => state.contacts.contactsCount);
-  const showContactsCount = 3;
-  const currentPage = +useSelector(state => state.router.location.query.page);
   const deleteModalOpened = useSelector(state => state.contacts.deleteModalOpened);
   const contacts = useSelector(state => state.contacts.data);
   const editContactId = useSelector(state => state.contacts.editContactId);
@@ -161,26 +162,30 @@ function Home() {
           )}
         </div>
       )}
-      <div className={styles.footer}>
-        <div className={styles.allContacts}>{contactsCount} contacts</div>
-        <div className={styles.contactLinks}>
-          {pages.map(page => {
-            return (
-              <button
-                type="submit"
-                key={page}
-                className={
-                  (currentPage === page && styles.contactLinkSelected) ||
-                  styles.contactLink
-                }
-                disabled={currentPage === page}
-              >
-                {page}
-              </button>
-            );
-          })}
+      {contacts.length !== 0 && (
+        <div className={styles.footer}>
+          <div className={styles.allContacts}>{contactsCount} contacts</div>
+          <div className={styles.contactLinks}>
+            {pages.map(page => {
+              return (
+                <button
+                  onClick={() => {
+                    dispatch(getPartContacts({ page, count: showContactsCount }));
+                  }}
+                  type="submit"
+                  key={page}
+                  className={
+                    (currentPage === page && styles.contactLinkSelected) ||
+                    styles.contactLink
+                  }
+                  disabled={currentPage === page}
+                >
+                  {page}
+                </button>
+              );
+            })}
 
-          {/* <MemoryRouter initialEntries={['/contacts']} initialIndex={1}>
+            {/* <MemoryRouter initialEntries={['/contacts']} initialIndex={1}>
             <Route>
               {({ location }) => {
                 const query = new URLSearchParams(location.search);
@@ -201,8 +206,9 @@ function Home() {
               }}
             </Route>
           </MemoryRouter> */}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
