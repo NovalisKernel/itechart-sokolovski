@@ -38,7 +38,7 @@
 }
 
 .contactBlock {
-  margin-top: 20px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
 }
@@ -51,6 +51,7 @@
   padding: 7px 0;
   text-indent: 20px;
   margin-top: 5px;
+  border: 1px solid #969494;
 }
 
 .doubleInputField {
@@ -74,10 +75,12 @@
   text-indent: 20px;
   margin-top: 5px;
   width: 100%;
+  border: 1px solid #969494;
 }
 
 .textAreaTitle {
   margin-top: 10px;
+  margin-bottom: 5px;
   color: #556a7c;
   font-size: 13px;
   font-weight: bold;
@@ -93,7 +96,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 30px;
 }
 .bottomBtns button {
   padding: 10px 50px;
@@ -119,6 +122,15 @@
 .errorText {
   font-size: 12px;
   color: #cc0000;
+}
+.selectField {
+  border: 1px solid #969494;
+}
+select {
+  display: block;
+  height: auto;
+  padding: 7px 0;
+  margin-top: 5px;
 }
 @media all and (max-width: 1280px) {
   .modalInfo {

@@ -72,6 +72,8 @@ function LoginPage() {
                   value={values.password}
                 />
               </label>
+
+              {errors.password && touched.password && errors.password}
               <p
                 onClick={() => {
                   setIsRegModal(true);
@@ -81,7 +83,6 @@ function LoginPage() {
                 Have not account? Registred now!
               </p>
 
-              {errors.password && touched.password && errors.password}
               <button className={styles.formBtn} type="submit" disabled={isRequesting}>
                 Submit
               </button>

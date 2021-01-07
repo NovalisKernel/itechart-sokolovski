@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Formik } from 'formik';
+import { Formik, Field } from 'formik';
 import { ReactComponent as CloseIcon } from 'assets/img/close.svg';
 import { editContact, changeContact, openDeleteModal } from 'store/contacts/actions';
 import Textarea from '../Textarea';
@@ -68,36 +68,44 @@ function EditContact({ contact }) {
             <div className={styles.doubleInputField}>
               <div className={styles.aloneInputField}>
                 <span className={styles.aloneInputText}>Decision Rights</span>
-                <input
+                <Field
                   className={
                     errors.decision && touched.decision && errors.decision
                       ? styles.error
-                      : ''
+                      : styles.selectField
                   }
-                  type="text"
+                  as="select"
                   name="decision"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.decision}
-                />
+                >
+                  <option disabled selected value={values.decision}>
+                    {values.decision}
+                  </option>
+                  <option value="Decision1">Decision1</option>
+                  <option value="Decision2">Decision2</option>
+                  <option value="Decision3">Decision3</option>
+                </Field>
+
                 <span className={styles.errorText}>
                   {errors.decision && touched.decision && errors.decision}
                 </span>
               </div>
               <div className={styles.aloneInputField}>
                 <span className={styles.aloneInputText}>Promoter/Detractor</span>
-                <input
+                <Field
                   className={
                     errors.promoter && touched.promoter && errors.promoter
                       ? styles.error
-                      : ''
+                      : styles.selectField
                   }
-                  type="text"
+                  as="select"
                   name="promoter"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.promoter}
-                />
+                >
+                  <option disabled selected value={values.promoter}>
+                    {values.promoter}
+                  </option>
+                  <option value="Promoter">Promoter</option>
+                  <option value="Detractor">Detractor</option>
+                </Field>
                 <span className={styles.errorText}>
                   {errors.promoter && touched.promoter && errors.promoter}
                 </span>
@@ -106,16 +114,22 @@ function EditContact({ contact }) {
             <div className={styles.doubleInputField}>
               <div className={styles.aloneInputField}>
                 <span className={styles.aloneInputText}>Priority Level</span>
-                <input
+                <Field
                   className={
-                    errors.level && touched.level && errors.level ? styles.error : ''
+                    errors.level && touched.level && errors.level
+                      ? styles.error
+                      : styles.selectField
                   }
-                  type="text"
+                  as="select"
                   name="level"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.level}
-                />
+                >
+                  <option disabled selected value={values.level}>
+                    {values.level}
+                  </option>
+                  <option value="High">High</option>
+                  <option value="Middle">Middle</option>
+                  <option value="Low">Low</option>
+                </Field>
                 <span className={styles.errorText}>
                   {errors.level && touched.level && errors.level}
                 </span>

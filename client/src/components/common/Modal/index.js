@@ -1,9 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Formik } from 'formik';
+import { Formik, Field } from 'formik';
 import { addContact } from 'store/contacts/actions';
 import { ReactComponent as CloseIcon } from 'assets/img/close.svg';
-import Select from 'react-select';
 import styles from './styles.module.css';
 import Textarea from '../Textarea';
 import validationSchema from './validationContactSchema';
@@ -11,6 +10,10 @@ import Button from '../Button';
 
 function Modal({ closeModal }) {
   const dispatch = useDispatch();
+  // const levelOptions = useSelector(state => state.contacts.levelOptions);
+  // const promoterOptions = useSelector(state => state.contacts.promoterOptions);
+  // const decisionOptions = useSelector(state => state.contacts.decisionOptions);
+
   return (
     <>
       <div className={styles.modal} onClick={closeModal}></div>
@@ -72,39 +75,51 @@ function Modal({ closeModal }) {
                 {errors.job && touched.job && errors.job}
               </span>
             </div>
+
             <div className={styles.doubleInputField}>
               <div className={styles.aloneInputField}>
                 <span className={styles.aloneInputText}>Decision Rights</span>
-                <input
+
+                <Field
                   className={
                     errors.decision && touched.decision && errors.decision
                       ? styles.error
-                      : ''
+                      : styles.selectField
                   }
-                  type="text"
+                  as="select"
                   name="decision"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.decision}
-                />
+                >
+                  <option disabled selected value="">
+                    Choose decision
+                  </option>
+                  <option value="Decision1">Decision1</option>
+                  <option value="Decision2">Decision2</option>
+                  <option value="Decision3">Decision3</option>
+                </Field>
+
                 <span className={styles.errorText}>
                   {errors.decision && touched.decision && errors.decision}
                 </span>
               </div>
               <div className={styles.aloneInputField}>
                 <span className={styles.aloneInputText}>Promoter/Detractor</span>
-                <input
+
+                <Field
                   className={
                     errors.promoter && touched.promoter && errors.promoter
                       ? styles.error
-                      : ''
+                      : styles.selectField
                   }
-                  type="text"
+                  as="select"
                   name="promoter"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.promoter}
-                />
+                  placeholder="lol"
+                >
+                  <option disabled selected value="">
+                    Choose promoter
+                  </option>
+                  <option value="Promoter">Promoter</option>
+                  <option value="Detractor">Detractor</option>
+                </Field>
                 <span className={styles.errorText}>
                   {errors.promoter && touched.promoter && errors.promoter}
                 </span>
@@ -113,16 +128,23 @@ function Modal({ closeModal }) {
             <div className={styles.doubleInputField}>
               <div className={styles.aloneInputField}>
                 <span className={styles.aloneInputText}>Priority Level</span>
-                <input
+
+                <Field
                   className={
-                    errors.level && touched.level && errors.level ? styles.error : ''
+                    errors.level && touched.level && errors.level
+                      ? styles.error
+                      : styles.selectField
                   }
-                  type="text"
+                  as="select"
                   name="level"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.level}
-                />
+                >
+                  <option disabled selected value="">
+                    Choose level
+                  </option>
+                  <option value="High">High</option>
+                  <option value="Middle">Middle</option>
+                  <option value="Low">Low</option>
+                </Field>
                 <span className={styles.errorText}>
                   {errors.level && touched.level && errors.level}
                 </span>

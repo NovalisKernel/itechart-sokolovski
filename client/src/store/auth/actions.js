@@ -70,8 +70,9 @@ export const login = userData => async dispatch => {
 export const registration = userData => async dispatch => {
   dispatch(regRequest());
   try {
-    await axios.post('/login/reg', userData);
+    const loginData = await axios.post('/login/reg', userData);
     dispatch(regSuccess());
+    //dispatch(login({ email: loginData.email, password: loginData.password }));
   } catch (e) {
     dispatch(regFailure(e.message));
   }

@@ -58,6 +58,20 @@ const initialState = {
   deleteModalOpened: null,
   message: '',
   contactsCount: null,
+  levelOptions: [
+    { value: 'Low', label: 'Low' },
+    { value: 'Middle', label: 'Middle' },
+    { value: 'High', label: 'High' },
+  ],
+  promoterOptions: [
+    { value: 'Promoter', label: 'Promoter' },
+    { value: 'Detractor', label: 'Detractor' },
+  ],
+  decisionOptions: [
+    { value: 'Decision1', label: 'Decision1' },
+    { value: 'Decision2', label: 'Decision2' },
+    { value: 'Decision3', label: 'Decision3' },
+  ],
 };
 
 function contactsReducer(state = initialState, { type, payload }) {
