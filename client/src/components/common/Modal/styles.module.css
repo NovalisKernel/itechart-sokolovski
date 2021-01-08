@@ -118,6 +118,7 @@
 }
 .modalInfo .error {
   border: 1px solid #cc0000;
+  display: block;
 }
 .errorText {
   font-size: 12px;
@@ -125,9 +126,12 @@
 }
 .selectField {
   border: 1px solid #969494;
+  display: block;
+  margin-top: 4px;
+  height: auto;
+  padding: 6px 0;
 }
 select {
-  display: block;
   height: auto;
   padding: 7px 0;
   margin-top: 5px;

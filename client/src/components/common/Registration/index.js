@@ -1,23 +1,21 @@
 import React from 'react';
 import { Formik } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { registration } from 'store/auth/actions';
+import { useDispatch } from 'react-redux';
+import { registration, openRegModal } from 'store/auth/actions';
 import { ReactComponent as CloseIcon } from 'assets/img/close.svg';
 import styles from './styles.module.css';
 import validationSchema from '../../Login/validationRegSchema';
 
-function Registration({ closeModal }) {
+function Registration() {
   const dispatch = useDispatch();
-  const isRequesting = useSelector(state => state.auth.isRequesting);
   return (
     <div className={styles.regModal}>
-      {isRequesting && (
+      {/* {isRequesting && (
         <div className={styles.preload}>
           <CircularProgress />
         </div>
-      )}
-      <div onClick={closeModal} className={styles.darkWindow}></div>
+      )} */}
+      <div onClick={() => dispatch(openRegModal())} className={styles.darkWindow}></div>
       <Formik
         initialValues={{ email: '', password: '', name: '' }}
         validationSchema={validationSchema}
@@ -36,7 +34,7 @@ function Registration({ closeModal }) {
           /* and other goodies */
         }) => (
           <form className={styles.form} onSubmit={handleSubmit}>
-            <label htmlFor="" className={styles.formLabel}>
+            <label htmlFor="email" className={styles.formLabel}>
               <span className={styles.labelText}>Email </span>
               <input
                 className={styles.textField}
@@ -45,10 +43,11 @@ function Registration({ closeModal }) {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.email}
+                id="email"
               />
             </label>
             {errors.email && touched.email && errors.email}
-            <label htmlFor="" className={styles.formLabel}>
+            <label htmlFor="name" className={styles.formLabel}>
               <span className={styles.labelText}>Name </span>
               <input
                 className={styles.textField}
@@ -57,10 +56,11 @@ function Registration({ closeModal }) {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.name}
+                id="name"
               />
             </label>
             {errors.name && touched.name && errors.name}
-            <label htmlFor="" className={styles.formLabel}>
+            <label htmlFor="pass" className={styles.formLabel}>
               <span className={styles.labelText}>Password</span>
               <input
                 className={styles.textField}
@@ -69,13 +69,17 @@ function Registration({ closeModal }) {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.password}
+                id="pass"
               />
             </label>
             {errors.password && touched.password && errors.password}
             <button className={styles.formBtn} type="submit" disabled={isSubmitting}>
               Submit
             </button>
-            <CloseIcon onClick={closeModal} className={styles.close} />
+            <CloseIcon
+              onClick={() => dispatch(openRegModal())}
+              className={styles.close}
+            />
           </form>
         )}
       </Formik>

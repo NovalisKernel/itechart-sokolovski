@@ -5,6 +5,7 @@ import {
   // getContacts,
   getPartContacts,
   createModalOpened,
+  changeShowCounts,
 } from 'store/contacts/actions';
 import { logOut } from 'store/auth/actions';
 import { empty, searchicon, filter, grid, row } from 'assets';
@@ -17,8 +18,14 @@ import {
   Button,
   Input,
   AlertDialog,
+  SnackBar,
 } from 'components/common';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 
 // import { MemoryRouter, Route } from 'react-router';
 // import { Link } from 'react-router-dom';
@@ -27,10 +34,26 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import styles from './styles.module.css';
 
+const useStyles = makeStyles(theme => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
+
 function Home() {
+  const classes = useStyles();
+
   const dispatch = useDispatch();
-  const showContactsCount = 5;
+  const showContactsCount = useSelector(state => state.contacts.showContactsCount) || 3;
   const currentPage = +useSelector(state => state.router.location.query.page);
+
+  const showCountsChange = event => {
+    dispatch(changeShowCounts(event.target.value));
+  };
 
   useEffect(() => {
     dispatch(getPartContacts({ page: currentPage || 1, count: showContactsCount }));
@@ -164,51 +187,47 @@ function Home() {
       )}
       {contacts.length !== 0 && (
         <div className={styles.footer}>
-          <div className={styles.allContacts}>{contactsCount} contacts</div>
-          <div className={styles.contactLinks}>
-            {pages.map(page => {
-              return (
-                <button
-                  onClick={() => {
-                    dispatch(getPartContacts({ page, count: showContactsCount }));
-                  }}
-                  type="submit"
-                  key={page}
-                  className={
-                    (currentPage === page && styles.contactLinkSelected) ||
-                    styles.contactLink
-                  }
-                  disabled={currentPage === page}
-                >
-                  {page}
-                </button>
-              );
-            })}
-
-            {/* <MemoryRouter initialEntries={['/contacts']} initialIndex={1}>
-            <Route>
-              {({ location }) => {
-                const query = new URLSearchParams(location.search);
-                const page = parseInt(query.get('page') || '1', 10);
+          <div className={styles.container}>
+            <div className={styles.allContacts}>{contactsCount} contacts</div>
+            <div className={styles.contactLinks}>
+              {pages.map(page => {
                 return (
-                  <Pagination
-                    page={page}
-                    count={pageCount}
-                    renderItem={item => (
-                      <PaginationItem
-                        component={Link}
-                        to={`/contacts?page=${item.page}`}
-                        {...item}
-                      />
-                    )}
-                  />
+                  <button
+                    onClick={() => {
+                      dispatch(getPartContacts({ page, count: showContactsCount }));
+                    }}
+                    type="submit"
+                    key={page}
+                    className={
+                      (currentPage === page && styles.contactLinkSelected) ||
+                      styles.contactLink
+                    }
+                    disabled={currentPage === page}
+                  >
+                    {page}
+                  </button>
                 );
-              }}
-            </Route>
-          </MemoryRouter> */}
+              })}
+            </div>
+            <div className={styles.selectCountContacts}>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">Per page</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={showContactsCount}
+                  onChange={showCountsChange}
+                >
+                  <MenuItem value={3}>3</MenuItem>
+                  <MenuItem value={5}>5</MenuItem>
+                  <MenuItem value={10}>10</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
           </div>
         </div>
       )}
+      <SnackBar />
     </div>
   );
 }

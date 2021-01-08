@@ -141,16 +141,16 @@
   border-top: 1px solid #dddddd;
   z-index: 1;
   box-shadow: 0 0 2px 2px #dddddd;
-  height: 50px;
+  height: 60px;
+}
+.container {
+  width: 90%;
+  margin: 0 auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  height: 100%;
 }
-.allContacts {
-  position: absolute;
-  left: 20px;
-}
-
 .contactLink {
   height: 26px;
   margin: 0 1px;
@@ -177,4 +177,14 @@
 .contactLinks nav {
   background: none;
   box-shadow: none;
+}
+
+.selectCountContacts > div {
+  margin: 0 0 10px 0;
+}
+
+@media all and (max-width: 600px) {
+  .container {
+    width: 100%;
+  }
 }

@@ -40,3 +40,9 @@ export const SORT_CONTACT = 'SORT_CONTACT';
 export const LOG_OUT = 'LOG_OUT';
 
 export const CONTACTS_COUNT = 'CONTACTS_COUNT';
+
+export const IS_REG_MODAL = 'IS_REG_MODAL';
+
+export const CHANGE_SHOW_CONTACTS = 'CHANGE_SHOW_CONTACTS';
+
+export const CHANGE_MESSAGE = 'CHANGE_MESSAGE';

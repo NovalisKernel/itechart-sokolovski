@@ -22,6 +22,8 @@ import {
   SORT_CONTACT,
   OPEN_DELETE_MODAL,
   CONTACTS_COUNT,
+  CHANGE_SHOW_CONTACTS,
+  CHANGE_MESSAGE,
 } from 'store/actionTypes';
 import history from '../history';
 
@@ -159,6 +161,20 @@ export function countOfContacts(count) {
   };
 }
 
+export function changeShowCounts(count) {
+  return {
+    type: CHANGE_SHOW_CONTACTS,
+    payload: count,
+  };
+}
+
+export function changeMessage(text) {
+  return {
+    type: CHANGE_MESSAGE,
+    payload: text,
+  };
+}
+
 // export const getContacts = user => async dispatch => {
 //   dispatch(getContactRequest());
 //   try {
@@ -171,7 +187,6 @@ export function countOfContacts(count) {
 // };
 
 export const getPartContacts = paginationData => async dispatch => {
-  history.push(`/contacts?page=${paginationData.page}`);
   dispatch(getPartContactRequest());
   try {
     const response = await axios.get('/contacts', {
@@ -183,6 +198,9 @@ export const getPartContacts = paginationData => async dispatch => {
 
     dispatch(getPartContactSuccess(response.data.contacts));
     dispatch(countOfContacts(response.data.countOfCOntacts));
+    Math.ceil(response.data.countOfCOntacts / paginationData.count) < paginationData.page
+      ? history.push(`/contacts?page=1`)
+      : history.push(`/contacts?page=${paginationData.page}`);
   } catch (e) {
     dispatch(getPartContactFailure(e.message));
   }
@@ -193,6 +211,7 @@ export const addContact = newContact => async dispatch => {
   try {
     const response = await axios.post('/contacts', newContact);
     dispatch(addContactSuccess(response.data));
+    dispatch(changeMessage('Контакт добавлен'));
   } catch (e) {
     dispatch(addContactFailure(e.message));
   }
@@ -203,6 +222,7 @@ export const changeContact = contact => async dispatch => {
   try {
     const response = await axios.put('/contacts', contact);
     dispatch(changeContactSuccess(response.data));
+    dispatch(changeMessage('Контакт изменен'));
   } catch (e) {
     dispatch(changeContactFailure(e.message));
   }
@@ -214,7 +234,9 @@ export const deletedContact = contactId => async dispatch => {
     const response = await axios.delete('/contacts', { data: { id: contactId } });
     dispatch(deleteContactSuccess(response.data.allContacts));
     dispatch(countOfContacts(response.data.countOfCOntacts));
+    dispatch(changeMessage('Пользователь удален'));
   } catch (e) {
     dispatch(deleteContactFailure(e.message));
+    dispatch(changeMessage('Что-то пошло не так...'));
   }
 };

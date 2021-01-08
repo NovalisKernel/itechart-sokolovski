@@ -1,20 +1,19 @@
 import React, { useEffect } from 'react';
-import { useState } from 'react';
-import styles from './styles.module.css';
 import logo from 'assets/img/logo.png';
 import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import validationSchema from './validationLoginSchema';
-import { login } from 'store/auth/actions';
+import { login, openRegModal } from 'store/auth/actions';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Registration } from 'components/common';
 import history from 'store/history';
+import validationSchema from './validationLoginSchema';
+import styles from './styles.module.css';
 
 function LoginPage() {
-  const [isRegModal, setIsRegModal] = useState(false);
   const dispatch = useDispatch();
   const isRequesting = useSelector(state => state.auth.isRequesting);
   const isAuth = useSelector(state => state.auth.isAuth);
+  const isRegModal = useSelector(state => state.auth.regModal);
   useEffect(() => {
     if (isAuth) {
       history.push('/contacts');
@@ -27,7 +26,7 @@ function LoginPage() {
           <CircularProgress />
         </div>
       )}
-      {isRegModal && <Registration closeModal={() => setIsRegModal(false)} />}
+      {isRegModal && <Registration />}
       <div className={styles.leftLoginBlock}>
         <h1>Coro</h1>
         <Formik
@@ -76,7 +75,7 @@ function LoginPage() {
               {errors.password && touched.password && errors.password}
               <p
                 onClick={() => {
-                  setIsRegModal(true);
+                  dispatch(openRegModal());
                 }}
                 className={styles.offerToReg}
               >

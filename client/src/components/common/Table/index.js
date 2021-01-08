@@ -15,10 +15,10 @@ function Table({ contacts, openDetailsHandler }) {
       <thead>
         <tr className={styles.tableHead}>
           <td onClick={() => dispatch(sortContacts('name'))}>Name</td>
-          <td onClick={() => dispatch(sortContacts('decision'))}>Priority Level</td>
           <td onClick={() => dispatch(sortContacts('job'))}>Job Title</td>
+          <td onClick={() => dispatch(sortContacts('level'))}>Priority Level</td>
           <td onClick={() => dispatch(sortContacts('promoter'))}>Promoter/Detractor</td>
-          <td onClick={() => dispatch(sortContacts('level'))}>Decision Right</td>
+          <td onClick={() => dispatch(sortContacts('decision'))}>Decision Right</td>
           <td onClick={() => dispatch(sortContacts('relatOwner'))}>Relationship Owner</td>
           <td>PriorityTopics</td>
 

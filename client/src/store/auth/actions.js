@@ -7,6 +7,7 @@ import {
   REG_REQUEST,
   REG_SUCCESS,
   LOG_OUT,
+  IS_REG_MODAL,
 } from 'store/actionTypes';
 import setAuthTokenHeader from 'services/api/configure';
 import history from '../history';
@@ -53,6 +54,12 @@ export function logOut() {
   };
 }
 
+export function openRegModal() {
+  return {
+    type: IS_REG_MODAL,
+  };
+}
+
 export const login = userData => async dispatch => {
   dispatch(loginRequest());
   try {
@@ -70,9 +77,9 @@ export const login = userData => async dispatch => {
 export const registration = userData => async dispatch => {
   dispatch(regRequest());
   try {
-    const loginData = await axios.post('/login/reg', userData);
+    await axios.post('/login/reg', userData);
     dispatch(regSuccess());
-    //dispatch(login({ email: loginData.email, password: loginData.password }));
+    dispatch(openRegModal());
   } catch (e) {
     dispatch(regFailure(e.message));
   }

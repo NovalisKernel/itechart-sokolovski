@@ -98,6 +98,15 @@
 }
 select {
   border: 1px solid #969494;
+  display: block;
+}
+
+.selectField {
+  border: 1px solid #969494;
+  display: block;
+  margin-top: 4px;
+  height: auto;
+  padding: 6px 0;
 }
 .textAreaTitle {
   margin-top: 10px;
@@ -138,6 +147,7 @@ select {
 }
 .modalInfo .error {
   border: 1px solid #cc0000;
+  display: block;
 }
 .errorText {
   font-size: 12px;

@@ -10,6 +10,7 @@ import Table from 'components/common/Table';
 import Textarea from 'components/common/Textarea';
 import Registration from 'components/common/Registration';
 import AlertDialog from 'components/common/AlertDialog';
+import SnackBar from 'components/common/SnackBar';
 
 export {
   ActionsModal,
@@ -24,4 +25,5 @@ export {
   Textarea,
   Registration,
   AlertDialog,
+  SnackBar,
 };

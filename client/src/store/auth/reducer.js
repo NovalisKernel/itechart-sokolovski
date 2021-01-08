@@ -6,6 +6,7 @@ import {
   REG_SUCCESS,
   REG_REQUEST,
   LOG_OUT,
+  IS_REG_MODAL,
 } from 'store/actionTypes';
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   user: {},
   error: '',
   isRegistred: false,
+  regModal: false,
 };
 
 function loginReducer(state = initialState, { type, payload }) {
@@ -56,6 +58,11 @@ function loginReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         isAuth: false,
+      };
+    case IS_REG_MODAL:
+      return {
+        ...state,
+        regModal: !state.regModal,
       };
     default:
       return state;
