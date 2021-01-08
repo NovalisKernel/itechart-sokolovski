@@ -25,6 +25,7 @@ import {
   CONTACTS_COUNT,
   CHANGE_SHOW_CONTACTS,
   CHANGE_MESSAGE,
+  FILTER_MODAL_OPENED,
 } from 'store/actionTypes';
 import { sortBy } from 'lodash';
 
@@ -75,6 +76,7 @@ const initialState = {
     { value: 'Decision3', label: 'Decision3' },
   ],
   showContactsCount: '',
+  filterModalOpened: false,
 };
 
 function contactsReducer(state = initialState, { type, payload }) {
@@ -227,6 +229,11 @@ function contactsReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         message: payload,
+      };
+    case FILTER_MODAL_OPENED:
+      return {
+        ...state,
+        filterModalOpened: !state.filterModalOpened,
       };
     default:
       return state;

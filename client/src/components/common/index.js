@@ -11,6 +11,7 @@ import Textarea from 'components/common/Textarea';
 import Registration from 'components/common/Registration';
 import AlertDialog from 'components/common/AlertDialog';
 import SnackBar from 'components/common/SnackBar';
+import FilterModal from 'components/common/FilterModal';
 
 export {
   ActionsModal,
@@ -26,4 +27,5 @@ export {
   Registration,
   AlertDialog,
   SnackBar,
+  FilterModal,
 };

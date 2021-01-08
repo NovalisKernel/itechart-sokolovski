@@ -8,7 +8,7 @@ import Textarea from '../Textarea';
 import validationSchema from './validationContactSchema';
 import Button from '../Button';
 
-function Modal({ closeModal }) {
+function FilterModal({ closeModal }) {
   const dispatch = useDispatch();
   // const levelOptions = useSelector(state => state.contacts.levelOptions);
   // const promoterOptions = useSelector(state => state.contacts.promoterOptions);
@@ -189,4 +189,4 @@ function Modal({ closeModal }) {
   );
 }
 
-export default Modal;
+export default FilterModal;

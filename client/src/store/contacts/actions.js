@@ -24,6 +24,7 @@ import {
   CONTACTS_COUNT,
   CHANGE_SHOW_CONTACTS,
   CHANGE_MESSAGE,
+  FILTER_MODAL_OPENED,
 } from 'store/actionTypes';
 import history from '../history';
 
@@ -172,6 +173,12 @@ export function changeMessage(text) {
   return {
     type: CHANGE_MESSAGE,
     payload: text,
+  };
+}
+
+export function openFilterModal() {
+  return {
+    type: FILTER_MODAL_OPENED,
   };
 }
 

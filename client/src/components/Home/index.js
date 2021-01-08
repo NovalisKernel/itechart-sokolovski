@@ -6,6 +6,7 @@ import {
   getPartContacts,
   createModalOpened,
   changeShowCounts,
+  openFilterModal,
 } from 'store/contacts/actions';
 import { logOut } from 'store/auth/actions';
 import { empty, searchicon, filter, grid, row } from 'assets';
@@ -19,6 +20,7 @@ import {
   Input,
   AlertDialog,
   SnackBar,
+  FilterModal,
 } from 'components/common';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -75,7 +77,7 @@ function Home() {
     ? contacts.filter(contact => contact.name.includes(searchString))
     : contacts;
   const editorContact = contacts.filter(contact => contact.id === editContactId);
-
+  const filterModalOpened = useSelector(state => state.contacts.filterModalOpened);
   const pageCount = Math.ceil(contactsCount / showContactsCount);
   const pages = [];
 
@@ -148,7 +150,12 @@ function Home() {
                 handleChange={e => searchInputHandler(e.target.value)}
               />
               <img className={styles.searchIcon} src={searchicon} alt="" />
-              <img className={styles.filter} src={filter} alt="" />
+              <img
+                onClick={() => dispatch(openFilterModal())}
+                className={styles.filter}
+                src={filter}
+                alt=""
+              />
               <img
                 onClick={e => showTable(e.target)}
                 className={isContactsTable ? styles.active : styles.notActive}
@@ -228,6 +235,7 @@ function Home() {
         </div>
       )}
       <SnackBar />
+      {filterModalOpened && <FilterModal />}
     </div>
   );
 }

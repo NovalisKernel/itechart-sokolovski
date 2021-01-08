@@ -1,0 +1,166 @@
+.modal {
+  height: 100vh;
+  width: 100%;
+  background: rgba(0, 0, 0, 70%);
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  justify-content: flex-end;
+}
+.modalInfo {
+  background: white;
+  width: 50%;
+  padding: 15px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+}
+.title {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close {
+  width: 20px;
+  height: 20px;
+}
+.close:hover {
+  cursor: pointer;
+  fill: #ff0000;
+}
+
+.contactBlock {
+  margin: 20px 0;
+  padding: 15px 10px;
+  background: #d0d0ff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.contactName {
+  font-size: 18px;
+  margin: 20px 0;
+}
+.contactJob {
+  font-size: 12px;
+  color: #000000a6;
+}
+.countsAppliedFilter {
+  font-weight: 300;
+  font-style: italic;
+  color: gray;
+}
+.deleteText {
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+  color: #000;
+  font-weight: bold;
+}
+.deleteText:hover {
+  color: #000000;
+}
+.contactText {
+  color: #556a7c;
+  font-size: 13px;
+  font-weight: bold;
+}
+.contactBlock input {
+  padding: 7px 0;
+  text-indent: 20px;
+  margin-top: 5px;
+}
+
+.aloneInputField {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #dfdddd;
+  margin-bottom: 20px;
+}
+.aloneInputText {
+  color: #556a7c;
+  font-size: 13px;
+  font-weight: bold;
+}
+.aloneInputField input {
+  padding: 7px 0;
+  text-indent: 20px;
+  margin-top: 5px;
+  width: 100%;
+  border: 1px solid #969494;
+}
+select {
+  border: 1px solid #969494;
+  display: block;
+}
+
+.selectField {
+  border: 1px solid #969494;
+  display: block;
+  margin-top: 4px;
+  height: auto;
+  padding: 6px 0;
+}
+.textAreaTitle {
+  margin-top: 10px;
+  color: #556a7c;
+  font-size: 13px;
+  font-weight: bold;
+}
+.modalInfo textarea {
+  width: 96%;
+  margin-top: 5px;
+  height: 30%;
+  resize: none;
+  padding: 2%;
+}
+.bottomBtns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+.bottomBtns button {
+  padding: 10px 50px;
+  margin: 0 10px;
+}
+.formBtn {
+  background: #cc0000;
+  border: 1px solid #cc0000;
+  color: #fff;
+  font-weight: bold;
+  transition: 0.5s background;
+  padding: 10px 30px;
+}
+.formBtn:hover {
+  background: none;
+  color: #cc0000;
+  cursor: pointer;
+  transition: 0.5s background;
+}
+.modalInfo .error {
+  border: 1px solid #cc0000;
+  display: block;
+}
+.errorText {
+  font-size: 12px;
+  color: #cc0000;
+}
+
+@media all and (max-width: 1280px) {
+  .modalInfo {
+    width: 100%;
+  }
+}

@@ -164,7 +164,7 @@ function EditContact({ contact }) {
             <div className={styles.bottomBtns}>
               <Button
                 text="Cancel"
-                isCancel={true}
+                isCancel="true"
                 handleClick={() => dispatch(editContact(null))}
               />
               <button className={styles.formBtn} type="submit" disabled={isSubmitting}>
