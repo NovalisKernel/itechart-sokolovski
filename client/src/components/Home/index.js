@@ -50,19 +50,34 @@ function Home() {
   const classes = useStyles();
 
   const dispatch = useDispatch();
-  const showContactsCount = useSelector(state => state.contacts.showContactsCount) || 3;
+  const showContactsCount = useSelector(state => state.contacts.showContactsCount);
   const currentPage = +useSelector(state => state.router.location.query.page);
+  const filterLevel = useSelector(state => state.contacts.filterLevel);
+  const filterPromoter = useSelector(state => state.contacts.filterPromoter);
+  const filterDecision = useSelector(state => state.contacts.filterDecision);
 
   const showCountsChange = event => {
     dispatch(changeShowCounts(event.target.value));
   };
 
   useEffect(() => {
-    dispatch(getPartContacts({ page: currentPage || 1, count: showContactsCount }));
-    // if (!localStorage.getItem('token')) {
-    //   dispatch(logOut());
-    // }
-  }, [dispatch, currentPage, showContactsCount]);
+    dispatch(
+      getPartContacts({
+        page: currentPage || 1,
+        count: showContactsCount,
+        filterLevel,
+        filterPromoter,
+        filterDecision,
+      })
+    );
+  }, [
+    dispatch,
+    currentPage,
+    showContactsCount,
+    filterDecision,
+    filterLevel,
+    filterPromoter,
+  ]);
 
   const user = useSelector(state => state.auth.user);
   const isRequesting = useSelector(state => state.contacts.isRequestion);

@@ -25,6 +25,13 @@ import {
   CHANGE_SHOW_CONTACTS,
   CHANGE_MESSAGE,
   FILTER_MODAL_OPENED,
+  FILTER_LEVEL_ADD,
+  FILTER_LEVEL_REMOVE,
+  FILTER_PROMOTER_ADD,
+  FILTER_PROMOTER_REMOVE,
+  FILTER_DECISION_ADD,
+  FILTER_DECISION_REMOVE,
+  COPY_FILTER,
 } from 'store/actionTypes';
 import history from '../history';
 
@@ -62,6 +69,45 @@ export function createModalOpened(value) {
 export function editModalOpened(value) {
   return {
     type: EDIT_MODEL_OPENED,
+    payload: value,
+  };
+}
+
+export function filterLevelAdd(value) {
+  return {
+    type: FILTER_LEVEL_ADD,
+    payload: value,
+  };
+}
+export function filterLevelRemove(value) {
+  return {
+    type: FILTER_LEVEL_REMOVE,
+    payload: value,
+  };
+}
+
+export function filterPromoterAdd(value) {
+  return {
+    type: FILTER_PROMOTER_ADD,
+    payload: value,
+  };
+}
+export function filterPromoterRemove(value) {
+  return {
+    type: FILTER_PROMOTER_REMOVE,
+    payload: value,
+  };
+}
+
+export function filterDecisionAdd(value) {
+  return {
+    type: FILTER_DECISION_ADD,
+    payload: value,
+  };
+}
+export function filterDecisionRemove(value) {
+  return {
+    type: FILTER_DECISION_REMOVE,
     payload: value,
   };
 }
@@ -182,6 +228,12 @@ export function openFilterModal() {
   };
 }
 
+export function copyFilter() {
+  return {
+    type: COPY_FILTER,
+  };
+}
+
 // export const getContacts = user => async dispatch => {
 //   dispatch(getContactRequest());
 //   try {
@@ -200,11 +252,15 @@ export const getPartContacts = paginationData => async dispatch => {
       params: {
         page: paginationData.page,
         count: paginationData.count,
+        levels: paginationData.filterLevel,
+        promoters: paginationData.filterPromoter,
+        decisions: paginationData.filterDecision,
       },
     });
 
     dispatch(getPartContactSuccess(response.data.contacts));
     dispatch(countOfContacts(response.data.countOfCOntacts));
+
     Math.ceil(response.data.countOfCOntacts / paginationData.count) < paginationData.page
       ? history.push(`/contacts?page=1`)
       : history.push(`/contacts?page=${paginationData.page}`);
@@ -213,11 +269,17 @@ export const getPartContacts = paginationData => async dispatch => {
   }
 };
 
-export const addContact = newContact => async dispatch => {
+export const addContact = newContact => async (dispatch, getState) => {
   dispatch(addContactRequest());
   try {
-    const response = await axios.post('/contacts', newContact);
-    dispatch(addContactSuccess(response.data));
+    //TODO: gestate() const fnc
+    const paginationData = {
+      count: getState().contacts.showContactsCount,
+      page: getState().router.location.query.page,
+    };
+    const response = await axios.post('/contacts', { ...newContact, ...paginationData });
+    dispatch(addContactSuccess(response.data.contacts));
+    dispatch(countOfContacts(response.data.countOfCOntacts));
     dispatch(changeMessage('Контакт добавлен'));
   } catch (e) {
     dispatch(addContactFailure(e.message));

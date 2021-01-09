@@ -26,6 +26,13 @@ import {
   CHANGE_SHOW_CONTACTS,
   CHANGE_MESSAGE,
   FILTER_MODAL_OPENED,
+  FILTER_LEVEL_ADD,
+  FILTER_LEVEL_REMOVE,
+  FILTER_PROMOTER_ADD,
+  FILTER_PROMOTER_REMOVE,
+  FILTER_DECISION_ADD,
+  FILTER_DECISION_REMOVE,
+  COPY_FILTER,
 } from 'store/actionTypes';
 import { sortBy } from 'lodash';
 
@@ -75,8 +82,14 @@ const initialState = {
     { value: 'Decision2', label: 'Decision2' },
     { value: 'Decision3', label: 'Decision3' },
   ],
-  showContactsCount: '',
+  showContactsCount: 3,
   filterModalOpened: false,
+  levelCopy: [],
+  promoterCopy: [],
+  decisionCopy: [],
+  filterLevel: [],
+  filterPromoter: [],
+  filterDecision: [],
 };
 
 function contactsReducer(state = initialState, { type, payload }) {
@@ -234,6 +247,43 @@ function contactsReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         filterModalOpened: !state.filterModalOpened,
+      };
+    case FILTER_LEVEL_ADD:
+      return {
+        ...state,
+        levelCopy: state.levelCopy.concat(payload),
+      };
+    case FILTER_LEVEL_REMOVE:
+      return {
+        ...state,
+        levelCopy: state.levelCopy.filter(level => level !== payload),
+      };
+    case FILTER_PROMOTER_ADD:
+      return {
+        ...state,
+        promoterCopy: state.promoterCopy.concat(payload),
+      };
+    case FILTER_PROMOTER_REMOVE:
+      return {
+        ...state,
+        promoterCopy: state.promoterCopy.filter(promoter => promoter !== payload),
+      };
+    case FILTER_DECISION_ADD:
+      return {
+        ...state,
+        decisionCopy: state.decisionCopy.concat(payload),
+      };
+    case FILTER_DECISION_REMOVE:
+      return {
+        ...state,
+        decisionCopy: state.decisionCopy.filter(decision => decision !== payload),
+      };
+    case COPY_FILTER:
+      return {
+        ...state,
+        filterLevel: [...state.levelCopy],
+        filterPromoter: [...state.promoterCopy],
+        filterDecision: [...state.decisionCopy],
       };
     default:
       return state;

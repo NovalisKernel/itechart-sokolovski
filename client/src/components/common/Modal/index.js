@@ -137,8 +137,9 @@ function FilterModal({ closeModal }) {
                   }
                   as="select"
                   name="level"
+                  defaultValue="default"
                 >
-                  <option disabled selected value="">
+                  <option disabled value="default">
                     Choose level
                   </option>
                   <option value="High">High</option>
@@ -177,7 +178,7 @@ function FilterModal({ closeModal }) {
               className={styles.textBox}
             />
             <div className={styles.bottomBtns}>
-              <Button text="Cancel" isCancel={true} handleClick={closeModal} />
+              <Button text="Cancel" isCancel="true" handleClick={closeModal} />
               <button className={styles.formBtn} type="submit" disabled={isSubmitting}>
                 Save
               </button>

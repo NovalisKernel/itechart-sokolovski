@@ -11,8 +11,8 @@ import { getContacts, addContact, changeContact, deleteContact } from './service
 
 const getContactsController = async (req, res) => {
   try {
-    const { page, count } = req.query;
-    const contacts = await getContacts(page, count);
+    const { page, count, levels, promoters, decisions } = req.query;
+    const contacts = await getContacts(page, count, levels, promoters, decisions);
     res.json(contacts);
   } catch (e) {
     res.status(500).json({ message: e.message });
@@ -21,7 +21,17 @@ const getContactsController = async (req, res) => {
 
 const addContactsController = async (req, res) => {
   try {
-    const { name, job, decision, promoter, level, relationship, topics } = req.body;
+    const {
+      name,
+      job,
+      decision,
+      promoter,
+      level,
+      relationship,
+      topics,
+      page,
+      count
+    } = req.body;
     const allContacts = await addContact(
       name,
       job,
@@ -29,7 +39,9 @@ const addContactsController = async (req, res) => {
       promoter,
       level,
       relationship,
-      topics
+      topics,
+      page,
+      count
     );
     // res.json({ message: `Создан новый контакт ${name}`, contacts: allContacts });
     res.json(allContacts);

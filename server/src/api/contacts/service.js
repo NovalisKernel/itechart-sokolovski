@@ -1,6 +1,8 @@
 import Contacts from '../../models/Contacts';
 import sequelize from 'sequelize';
 
+const { in: $in } = sequelize.Op;
+
 // const getContacts = async () => {
 //   const contacts = await Contacts.findAll({
 //     raw: true,
@@ -11,25 +13,51 @@ import sequelize from 'sequelize';
 //   return { contacts, countOfCOntacts };
 // };
 
-const getContacts = async (page, count) => {
-  const allContacts = await Contacts.findAll({
+const getContacts = async (page, count, levels = [], promoters = [], decisions = []) => {
+  let applyFiltering = false;
+  const where = {};
+  if (levels.length > 0) {
+    where.level = { [$in]: levels };
+    applyFiltering = true;
+  }
+  if (promoters.length > 0) {
+    where.promoter = { [$in]: promoters };
+    applyFiltering = true;
+  }
+  if (decisions.length > 0) {
+    where.decision = { [$in]: decisions };
+    applyFiltering = true;
+  }
+
+  const countOfCOntacts = await Contacts.count({
     raw: true,
     nest: true,
-    order: sequelize.literal('id')
+    order: sequelize.literal('id'),
+    where: applyFiltering ? where : null
   });
-
   const contacts = await Contacts.findAll({
     limit: count,
     raw: true,
     nest: true,
     offset: count * (page - 1),
-    order: sequelize.literal('id')
+    order: sequelize.literal('id'),
+    where: applyFiltering ? where : null
   });
-  const countOfCOntacts = allContacts.length;
+
   return { contacts, countOfCOntacts };
 };
 
-const addContact = async (name, job, decision, promoter, level, relationship, topics) => {
+const addContact = async (
+  name,
+  job,
+  decision,
+  promoter,
+  level,
+  relationship,
+  topics,
+  page = 1,
+  count = 3
+) => {
   const candidate = await Contacts.findOne({
     where: { name, job, decision, promoter, level, relatOwner: relationship },
     raw: true,
@@ -48,12 +76,17 @@ const addContact = async (name, job, decision, promoter, level, relationship, to
     topics
   });
   await contact.save();
-  const allContacts = await Contacts.findAll({
-    raw: true,
-    nest: true,
-    order: sequelize.literal('id')
-  });
-  return allContacts;
+  console.info('PAGE', page);
+  console.info('COUNT', count);
+  return await getContacts(page, count);
+  // const allContacts = await Contacts.findAll({
+  //   limit: count,
+  //   offset: count * (page - 1),
+  //   raw: true,
+  //   nest: true,
+  //   order: sequelize.literal('id')
+  // });
+  // return allContacts;
 };
 
 const changeContact = async (
