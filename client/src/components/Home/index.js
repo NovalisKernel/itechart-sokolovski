@@ -82,7 +82,7 @@ function Home() {
   const user = useSelector(state => state.auth.user);
   const isRequesting = useSelector(state => state.contacts.isRequestion);
   const showCreateModal = useSelector(state => state.contacts.createModalOpened);
-  // const showEditModal = useSelector(state => state.contacts.editModalOpened);
+  const countOfFilter = useSelector(state => state.contacts.countOfFilter);
   const contactsCount = useSelector(state => state.contacts.contactsCount);
   const deleteModalOpened = useSelector(state => state.contacts.deleteModalOpened);
   const contacts = useSelector(state => state.contacts.data);
@@ -166,12 +166,16 @@ function Home() {
               />
               <img className={styles.searchIcon} src={searchicon} alt="" />
 
-              <img
+              <button
                 onClick={() => dispatch(openFilterModal())}
                 className={styles.filter}
-                src={filter}
-                alt=""
-              />
+                type="button"
+              >
+                <img src={filter} className={styles.filterImg} alt="" />
+                {!!countOfFilter && (
+                  <span className={styles.countOfFilter}>{countOfFilter}</span>
+                )}
+              </button>
               <img
                 onClick={e => showTable(e.target)}
                 className={isContactsTable ? styles.active : styles.notActive}

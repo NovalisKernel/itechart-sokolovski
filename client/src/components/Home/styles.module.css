@@ -80,7 +80,25 @@
   padding: 10px;
   outline: 1px solid #dddddd;
 }
-
+.sort .filter {
+  padding: 9px;
+  border: none;
+  background: #fff;
+  outline: 1px solid #dddddd;
+  position: relative;
+  cursor: pointer;
+}
+.countOfFilter {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 10px;
+  color: #ff0000;
+}
+.sort .filter .filterImg {
+  padding: 0;
+  outline: none;
+}
 .notEmptyContact .sort img:hover {
   cursor: pointer;
 }

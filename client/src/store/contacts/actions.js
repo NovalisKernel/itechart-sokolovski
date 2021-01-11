@@ -258,9 +258,10 @@ export function openFilterModal() {
   };
 }
 
-export function copyFilter() {
+export function copyFilter(count) {
   return {
     type: COPY_FILTER,
+    payload: count,
   };
 }
 

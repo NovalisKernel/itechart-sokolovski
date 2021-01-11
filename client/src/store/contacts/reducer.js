@@ -101,6 +101,7 @@ const initialState = {
   filterLevel: [],
   filterPromoter: [],
   filterDecision: [],
+  countOfFilter: 0,
 };
 
 function contactsReducer(state = initialState, { type, payload }) {
@@ -310,6 +311,7 @@ function contactsReducer(state = initialState, { type, payload }) {
         filterLevel: [...state.levelCopy],
         filterPromoter: [...state.promoterCopy],
         filterDecision: [...state.decisionCopy],
+        countOfFilter: payload,
       };
     case CLEAR_FILTER:
       return {
@@ -324,6 +326,7 @@ function contactsReducer(state = initialState, { type, payload }) {
         levelCopy: [],
         promoterCopy: [],
         decisionCopy: [],
+        countOfFilter: 0,
       };
     default:
       return state;

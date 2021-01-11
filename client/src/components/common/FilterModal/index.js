@@ -232,7 +232,7 @@ function Modal() {
               />
               <button
                 onClick={() => {
-                  dispatch(copyFilter());
+                  dispatch(copyFilter(checkedCount));
                   dispatch(openFilterModal());
                 }}
                 className={styles.formBtn}
