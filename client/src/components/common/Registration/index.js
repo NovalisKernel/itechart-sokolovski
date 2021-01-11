@@ -73,7 +73,7 @@ function Registration() {
               />
             </label>
             {errors.password && touched.password && errors.password}
-            <button className={styles.formBtn} type="submit" disabled={isSubmitting}>
+            <button className={styles.formBtn} type="submit">
               Submit
             </button>
             <CloseIcon

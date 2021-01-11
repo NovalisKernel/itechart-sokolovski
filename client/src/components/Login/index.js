@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import logo from 'assets/img/logo.png';
 import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, openRegModal } from 'store/auth/actions';
+import { login, openRegModal, changeMessage } from 'store/auth/actions';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { Registration } from 'components/common';
+import { Registration, SnackBar } from 'components/common';
 import history from 'store/history';
 import validationSchema from './validationLoginSchema';
 import styles from './styles.module.css';
@@ -13,6 +13,7 @@ function LoginPage() {
   const dispatch = useDispatch();
   const isRequesting = useSelector(state => state.auth.isRequesting);
   const isAuth = useSelector(state => state.auth.isAuth);
+  const dialogMessage = useSelector(state => state.auth.message);
   const isRegModal = useSelector(state => state.auth.regModal);
   useEffect(() => {
     if (isAuth) {
@@ -94,6 +95,13 @@ function LoginPage() {
       <div className={styles.rightLoginBlock}>
         <h2>ILLU</h2>
       </div>
+
+      {!!dialogMessage && (
+        <SnackBar
+          dialogMessage={dialogMessage}
+          closeHandler={() => dispatch(changeMessage(''))}
+        />
+      )}
     </div>
   );
 }

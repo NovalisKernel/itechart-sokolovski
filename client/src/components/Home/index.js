@@ -8,7 +8,7 @@ import {
   changeShowCounts,
   openFilterModal,
 } from 'store/contacts/actions';
-import { logOut } from 'store/auth/actions';
+import { logOut, changeMessage } from 'store/auth/actions';
 import { empty, searchicon, filter, grid, row } from 'assets';
 import {
   EditContact,
@@ -78,7 +78,7 @@ function Home() {
     filterLevel,
     filterPromoter,
   ]);
-
+  const dialogMessage = useSelector(state => state.contacts.message);
   const user = useSelector(state => state.auth.user);
   const isRequesting = useSelector(state => state.contacts.isRequestion);
   const showCreateModal = useSelector(state => state.contacts.createModalOpened);
@@ -165,6 +165,7 @@ function Home() {
                 handleChange={e => searchInputHandler(e.target.value)}
               />
               <img className={styles.searchIcon} src={searchicon} alt="" />
+
               <img
                 onClick={() => dispatch(openFilterModal())}
                 className={styles.filter}
@@ -249,7 +250,10 @@ function Home() {
           </div>
         </div>
       )}
-      <SnackBar />
+      <SnackBar
+        dialogMessage={dialogMessage}
+        closeHandler={() => dispatch(changeMessage(''))}
+      />
       {filterModalOpened && <FilterModal />}
     </div>
   );

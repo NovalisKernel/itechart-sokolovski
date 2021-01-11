@@ -7,6 +7,7 @@ import {
   REG_REQUEST,
   LOG_OUT,
   IS_REG_MODAL,
+  CHANGE_MESSAGE,
 } from 'store/actionTypes';
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
   error: '',
   isRegistred: false,
   regModal: false,
+  message: '',
 };
 
 function loginReducer(state = initialState, { type, payload }) {
@@ -24,6 +26,7 @@ function loginReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         error: payload,
+        message: 'Неверный логин или пароль',
         isRequesting: false,
       };
     case LOGIN_SUCCESS:
@@ -43,11 +46,13 @@ function loginReducer(state = initialState, { type, payload }) {
         ...state,
         error: payload,
         isRequesting: false,
+        message: 'Пользователь уже существует',
       };
     case REG_SUCCESS:
       return {
         ...state,
         isRequesting: false,
+        message: 'Вы зарегестрировались:)',
       };
     case REG_REQUEST:
       return {
@@ -63,6 +68,11 @@ function loginReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         regModal: !state.regModal,
+      };
+    case CHANGE_MESSAGE:
+      return {
+        ...state,
+        message: payload,
       };
     default:
       return state;

@@ -8,6 +8,7 @@ import {
   REG_SUCCESS,
   LOG_OUT,
   IS_REG_MODAL,
+  CHANGE_MESSAGE,
 } from 'store/actionTypes';
 import setAuthTokenHeader from 'services/api/configure';
 import history from '../history';
@@ -57,6 +58,13 @@ export function logOut() {
 export function openRegModal() {
   return {
     type: IS_REG_MODAL,
+  };
+}
+
+export function changeMessage(text) {
+  return {
+    type: CHANGE_MESSAGE,
+    payload: text,
   };
 }
 

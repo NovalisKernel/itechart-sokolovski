@@ -297,6 +297,7 @@ export const getPartContacts = paginationData => async dispatch => {
       : history.push(`/contacts?page=${paginationData.page}`);
   } catch (e) {
     dispatch(getPartContactFailure(e.message));
+    dispatch(changeMessage('Что-то пошло не так...'));
   }
 };
 
@@ -314,6 +315,7 @@ export const addContact = newContact => async (dispatch, getState) => {
     dispatch(changeMessage('Контакт добавлен'));
   } catch (e) {
     dispatch(addContactFailure(e.message));
+    dispatch(changeMessage('Что-то пошло не так...'));
   }
 };
 
@@ -330,6 +332,7 @@ export const changeContact = contact => async (dispatch, getState) => {
     dispatch(changeMessage('Контакт изменен'));
   } catch (e) {
     dispatch(changeContactFailure(e.message));
+    dispatch(changeMessage('Что-то пошло не так...'));
   }
 };
 
