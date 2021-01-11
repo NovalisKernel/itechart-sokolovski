@@ -52,7 +52,18 @@ const addContactsController = async (req, res) => {
 
 const changeContactsController = async (req, res) => {
   try {
-    const { id, name, job, decision, promoter, level, relationship, topics } = req.body;
+    const {
+      id,
+      name,
+      job,
+      decision,
+      promoter,
+      level,
+      relationship,
+      topics,
+      page,
+      count
+    } = req.body;
     const allContacts = await changeContact(
       id,
       name,
@@ -61,7 +72,9 @@ const changeContactsController = async (req, res) => {
       promoter,
       level,
       relationship,
-      topics
+      topics,
+      page,
+      count
     );
     // res.json({ message: `Изменен контакт ${name}`, contacts: allContacts });
     res.json(allContacts);
@@ -72,8 +85,8 @@ const changeContactsController = async (req, res) => {
 
 const deleteContactsController = async (req, res) => {
   try {
-    const { id } = req.body;
-    const allContacts = await deleteContact(id);
+    const { id, page, count } = req.body;
+    const allContacts = await deleteContact(id, page, count);
     // res.json({ message: `Удален контакт с id=${id}`, contacts: allContacts });
     res.json(allContacts);
   } catch (e) {

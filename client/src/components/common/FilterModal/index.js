@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import {
   openFilterModal,
@@ -9,7 +9,11 @@ import {
   filterPromoterRemove,
   filterDecisionAdd,
   filterDecisionRemove,
+  changeCheckedLevel,
+  changeCheckedPromoter,
+  changeCheckedDecision,
   copyFilter,
+  clearFilter,
 } from 'store/contacts/actions';
 import { ReactComponent as CloseIcon } from 'assets/img/close.svg';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -19,29 +23,25 @@ import Button from '../Button';
 
 function Modal() {
   const dispatch = useDispatch();
-  const [level, setLevel] = useState({ High: false, Middle: false, Low: false });
-  const [promoter, setPromoter] = useState({ Promoter: false, Detractor: false });
-  const [decision, setDecision] = useState({
-    Decision1: false,
-    Decision2: false,
-    Decision3: false,
-  });
+  const level = useSelector(state => state.contacts.level);
+  const promoter = useSelector(state => state.contacts.promoter);
+  const decision = useSelector(state => state.contacts.decision);
+
+  const checkedCount = [
+    ...Object.values(level),
+    ...Object.values(promoter),
+    ...Object.values(decision),
+  ].filter(item => item === true).length;
 
   const levelChange = e => {
     const val = e.target.value;
-    setLevel({
-      ...level,
-      [val]: e.target.checked,
-    });
+    dispatch(changeCheckedLevel({ name: val, check: e.target.checked }));
     // eslint-disable-next-line no-unused-expressions
     e.target.checked ? dispatch(filterLevelAdd(val)) : dispatch(filterLevelRemove(val));
   };
   const promoterChange = e => {
     const val = e.target.value;
-    setLevel({
-      ...level,
-      [val]: e.target.checked,
-    });
+    dispatch(changeCheckedPromoter({ name: val, check: e.target.checked }));
     // eslint-disable-next-line no-unused-expressions
     e.target.checked
       ? dispatch(filterPromoterAdd(val))
@@ -49,10 +49,11 @@ function Modal() {
   };
   const decisionChange = e => {
     const val = e.target.value;
-    setLevel({
-      ...level,
-      [val]: e.target.checked,
-    });
+    dispatch(changeCheckedDecision({ name: val, check: e.target.checked }));
+    // setLevel({
+    //   ...level,
+    //   [val]: e.target.checked,
+    // });
     // eslint-disable-next-line no-unused-expressions
     e.target.checked
       ? dispatch(filterDecisionAdd(val))
@@ -95,8 +96,16 @@ function Modal() {
               />
             </div>
             <div className={styles.contactBlock}>
-              <span className={styles.countsAppliedFilter}>3 filters applied</span>
-              <h4 className={styles.deleteText}>Reset All</h4>
+              <span className={styles.countsAppliedFilter}>
+                {checkedCount} filters applied
+              </span>
+              <button
+                type="submit"
+                onClick={() => dispatch(clearFilter())}
+                className={styles.deleteText}
+              >
+                Reset All
+              </button>
             </div>
 
             <div className={styles.aloneInputField}>
@@ -151,6 +160,7 @@ function Modal() {
                       value="Promoter"
                       name="promoter"
                       color="primary"
+                      checked={promoter.Promoter}
                     />
                   }
                   label="Promoter"
@@ -162,6 +172,7 @@ function Modal() {
                       value="Detractor"
                       name="promoter"
                       color="primary"
+                      checked={promoter.Detractor}
                     />
                   }
                   label="Detractor"
@@ -179,6 +190,7 @@ function Modal() {
                       value="Decision1"
                       name="decision"
                       color="primary"
+                      checked={decision.Decision1}
                     />
                   }
                   label="Decision1"
@@ -190,6 +202,7 @@ function Modal() {
                       value="Decision2"
                       name="decision"
                       color="primary"
+                      checked={decision.Decision2}
                     />
                   }
                   label="Decision2"
@@ -201,6 +214,7 @@ function Modal() {
                       value="Decision3"
                       name="decision"
                       color="primary"
+                      checked={decision.Decision3}
                     />
                   }
                   label="Decision3"
@@ -223,7 +237,6 @@ function Modal() {
                 }}
                 className={styles.formBtn}
                 type="submit"
-                disabled={isSubmitting}
               >
                 Save
               </button>

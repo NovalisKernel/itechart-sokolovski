@@ -33,6 +33,10 @@ import {
   FILTER_DECISION_ADD,
   FILTER_DECISION_REMOVE,
   COPY_FILTER,
+  CHANGE_CHECKED_LEVEL,
+  CHANGE_CHECKED_PROMOTER,
+  CHANGE_CHECKED_DECISION,
+  CLEAR_FILTER,
 } from 'store/actionTypes';
 import { sortBy } from 'lodash';
 
@@ -84,6 +88,13 @@ const initialState = {
   ],
   showContactsCount: 3,
   filterModalOpened: false,
+  level: { High: false, Middle: false, Low: false },
+  promoter: { Promoter: false, Detractor: false },
+  decision: {
+    Decision1: false,
+    Decision2: false,
+    Decision3: false,
+  },
   levelCopy: [],
   promoterCopy: [],
   decisionCopy: [],
@@ -278,12 +289,41 @@ function contactsReducer(state = initialState, { type, payload }) {
         ...state,
         decisionCopy: state.decisionCopy.filter(decision => decision !== payload),
       };
+    case CHANGE_CHECKED_LEVEL:
+      return {
+        ...state,
+        level: { ...state.level, [payload.name]: payload.check },
+      };
+    case CHANGE_CHECKED_PROMOTER:
+      return {
+        ...state,
+        promoter: { ...state.promoter, [payload.name]: payload.check },
+      };
+    case CHANGE_CHECKED_DECISION:
+      return {
+        ...state,
+        decision: { ...state.decision, [payload.name]: payload.check },
+      };
     case COPY_FILTER:
       return {
         ...state,
         filterLevel: [...state.levelCopy],
         filterPromoter: [...state.promoterCopy],
         filterDecision: [...state.decisionCopy],
+      };
+    case CLEAR_FILTER:
+      return {
+        ...state,
+        level: { High: false, Middle: false, Low: false },
+        promoter: { Promoter: false, Detractor: false },
+        decision: {
+          Decision1: false,
+          Decision2: false,
+          Decision3: false,
+        },
+        levelCopy: [],
+        promoterCopy: [],
+        decisionCopy: [],
       };
     default:
       return state;

@@ -97,29 +97,33 @@ const changeContact = async (
   promoter,
   level,
   relationship,
-  topics
+  topics,
+  page = 1,
+  count = 3
 ) => {
   const contact = await Contacts.update(
     { name, job, decision, promoter, level, relatOwner: relationship, topics },
     { where: { id } }
   );
-  const allContacts = await Contacts.findAll({
-    raw: true,
-    nest: true,
-    order: sequelize.literal('id')
-  });
-  return allContacts;
+  // const allContacts = await Contacts.findAll({
+  //   raw: true,
+  //   nest: true,
+  //   order: sequelize.literal('id')
+  // });
+  // return allContacts;
+  return await getContacts(page, count);
 };
 
-const deleteContact = async id => {
+const deleteContact = async (id, page = 1, count = 3) => {
   await Contacts.destroy({ where: { id } });
-  const allContacts = await Contacts.findAll({
-    raw: true,
-    nest: true,
-    order: sequelize.literal('id')
-  });
-  const countOfCOntacts = allContacts.length;
-  return { allContacts, countOfCOntacts };
+  // const allContacts = await Contacts.findAll({
+  //   raw: true,
+  //   nest: true,
+  //   order: sequelize.literal('id')
+  // });
+  // const countOfCOntacts = allContacts.length;
+  // return { allContacts, countOfCOntacts };
+  return await getContacts(page, count);
 };
 
 export { getContacts, addContact, changeContact, deleteContact };

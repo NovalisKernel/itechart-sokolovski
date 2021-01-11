@@ -65,6 +65,9 @@
   cursor: pointer;
   color: #000;
   font-weight: bold;
+  background: none;
+  border: none;
+  outline: none;
 }
 .deleteText:hover {
   color: #000000;

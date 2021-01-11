@@ -112,7 +112,6 @@ function FilterModal({ closeModal }) {
                   }
                   as="select"
                   name="promoter"
-                  placeholder="lol"
                 >
                   <option disabled selected value="">
                     Choose promoter
@@ -137,9 +136,8 @@ function FilterModal({ closeModal }) {
                   }
                   as="select"
                   name="level"
-                  defaultValue="default"
                 >
-                  <option disabled value="default">
+                  <option disabled selected value="">
                     Choose level
                   </option>
                   <option value="High">High</option>

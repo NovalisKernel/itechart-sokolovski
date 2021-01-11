@@ -32,6 +32,10 @@ import {
   FILTER_DECISION_ADD,
   FILTER_DECISION_REMOVE,
   COPY_FILTER,
+  CHANGE_CHECKED_LEVEL,
+  CHANGE_CHECKED_PROMOTER,
+  CHANGE_CHECKED_DECISION,
+  CLEAR_FILTER,
 } from 'store/actionTypes';
 import history from '../history';
 
@@ -109,6 +113,32 @@ export function filterDecisionRemove(value) {
   return {
     type: FILTER_DECISION_REMOVE,
     payload: value,
+  };
+}
+
+export function changeCheckedLevel(value) {
+  return {
+    type: CHANGE_CHECKED_LEVEL,
+    payload: value,
+  };
+}
+
+export function changeCheckedPromoter(value) {
+  return {
+    type: CHANGE_CHECKED_PROMOTER,
+    payload: value,
+  };
+}
+
+export function changeCheckedDecision(value) {
+  return {
+    type: CHANGE_CHECKED_DECISION,
+    payload: value,
+  };
+}
+export function clearFilter() {
+  return {
+    type: CLEAR_FILTER,
   };
 }
 
@@ -261,6 +291,7 @@ export const getPartContacts = paginationData => async dispatch => {
     dispatch(getPartContactSuccess(response.data.contacts));
     dispatch(countOfContacts(response.data.countOfCOntacts));
 
+    // eslint-disable-next-line no-unused-expressions
     Math.ceil(response.data.countOfCOntacts / paginationData.count) < paginationData.page
       ? history.push(`/contacts?page=1`)
       : history.push(`/contacts?page=${paginationData.page}`);
@@ -272,10 +303,10 @@ export const getPartContacts = paginationData => async dispatch => {
 export const addContact = newContact => async (dispatch, getState) => {
   dispatch(addContactRequest());
   try {
-    //TODO: gestate() const fnc
+    const getStateData = getState();
     const paginationData = {
-      count: getState().contacts.showContactsCount,
-      page: getState().router.location.query.page,
+      count: getStateData.contacts.showContactsCount,
+      page: getStateData.router.location.query.page,
     };
     const response = await axios.post('/contacts', { ...newContact, ...paginationData });
     dispatch(addContactSuccess(response.data.contacts));
@@ -286,23 +317,39 @@ export const addContact = newContact => async (dispatch, getState) => {
   }
 };
 
-export const changeContact = contact => async dispatch => {
+export const changeContact = contact => async (dispatch, getState) => {
   dispatch(changeContactRequest());
   try {
-    const response = await axios.put('/contacts', contact);
-    dispatch(changeContactSuccess(response.data));
+    const getStateData = getState();
+    const paginationData = {
+      count: getStateData.contacts.showContactsCount,
+      page: getStateData.router.location.query.page,
+    };
+    const response = await axios.put('/contacts', { ...contact, ...paginationData });
+    dispatch(changeContactSuccess(response.data.contacts));
     dispatch(changeMessage('Контакт изменен'));
   } catch (e) {
     dispatch(changeContactFailure(e.message));
   }
 };
 
-export const deletedContact = contactId => async dispatch => {
+export const deletedContact = contactId => async (dispatch, getState) => {
   dispatch(deleteContactRequest());
   try {
-    const response = await axios.delete('/contacts', { data: { id: contactId } });
-    dispatch(deleteContactSuccess(response.data.allContacts));
+    const getStateData = getState();
+    const paginationData = {
+      count: getStateData.contacts.showContactsCount,
+      page: getStateData.router.location.query.page,
+    };
+    const response = await axios.delete('/contacts', {
+      data: { ...paginationData, id: contactId },
+    });
+    dispatch(deleteContactSuccess(response.data.contacts));
     dispatch(countOfContacts(response.data.countOfCOntacts));
+    // eslint-disable-next-line no-unused-expressions
+    Math.ceil(response.data.countOfCOntacts / paginationData.count) < paginationData.page
+      ? history.push(`/contacts?page=${paginationData.page - 1}`)
+      : history.push(`/contacts?page=${paginationData.page}`);
     dispatch(changeMessage('Пользователь удален'));
   } catch (e) {
     dispatch(deleteContactFailure(e.message));
