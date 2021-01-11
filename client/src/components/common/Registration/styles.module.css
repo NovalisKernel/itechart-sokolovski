@@ -1,93 +1,102 @@
-.regModal{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%!important;
-    height: 100vh;
-    position: fixed!important;
-    top: 0;
-    right: 0;
-    z-index: 1;
+.regModal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100% !important;
+  height: 100vh;
+  position: fixed !important;
+  top: 0;
+  right: 0;
+  z-index: 1;
 }
-.darkWindow{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.5);
+.darkWindow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
 }
-.form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 30%;
-    z-index: 2;
-    background: #849eb4;
-    position: relative;
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+  z-index: 2;
+  background: #fafafa;
+  position: relative;
+  border: 1px solid #cd2f2a;
+  box-shadow: 0 0 21px 6px rgb(205 47 42 / 64%);
+  padding: 30px 0 0 0;
 }
-.formLabel{
-    display: flex;
-    flex-direction: column;
-    margin: 10px 0;
-    width: 50%;
+.formLabel {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+  width: 70%;
 }
-.labelText{
-    color:#294054;
-    font-size: 14px;
-    letter-spacing: 1px;
-    margin: 5px 0;
+.labelText {
+  color: #294054;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin: 5px 0;
 }
-.textField{
-    border: 1px solid #e0e0e0;
-    border-radius: 2px;
-    text-indent: 10px;
-    padding: 10px 0;
+.textField {
+  border: 1px solid #e0e0e0;
+  border-radius: 2px;
+  text-indent: 10px;
+  padding: 10px 0;
 }
-.formBtn{
-    background: #cc0000;
-    border: 1px solid #cc0000;
-    color: #fff;
-    font-weight: bold;
-    transition: .5s background;
-    padding: 10px 30px;
+.formBtn {
+  background: #cc0000;
+  border: 1px solid #cc0000;
+  color: #fff;
+  font-weight: bold;
+  transition: 0.5s background;
+  padding: 10px 30px;
 }
-.formBtn:hover{
-    background: none;
-    color: #cc0000;
-    cursor: pointer;
-    transition: .5s background;
+.formBtn:hover {
+  background: none;
+  color: #cc0000;
+  cursor: pointer;
+  transition: 0.5s background;
 }
-.form label{
-    display: flex;
-    flex-direction: column;
-    margin: 10px 0;
-    width: 50%;
+.form label {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+  width: 70%;
 }
-.form label span{
-    color:#294054;
-    font-size: 14px;
-    letter-spacing: 1px;
-    margin: 5px 0;
+.form label span {
+  color: #294054;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin: 5px 0;
 }
 
-.form input{
-    padding: 10px 0;
+.form input {
+  padding: 10px 0;
+  background: rgb(162 162 162 / 10%);
 }
-.form button{
-    margin: 30px 0;
+.form button {
+  margin: 30px 0;
 }
-.form p span{
-    font-weight: bold;
+.form p span {
+  font-weight: bold;
 }
-.close{
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 20px;
-    height: 20px;
+.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
 }
-.close:hover{
-    cursor: pointer;
-    fill: #ff0000;
+.close:hover {
+  cursor: pointer;
+  fill: #ff0000;
+}
+@media all and (max-width: 600px) {
+  .form {
+    width: 80%;
+  }
 }

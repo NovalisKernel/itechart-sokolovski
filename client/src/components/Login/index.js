@@ -1,32 +1,33 @@
 import React, { useEffect } from 'react';
-import {useState} from 'react';
-import styles from './styles.module.css';
 import logo from 'assets/img/logo.png';
 import { Formik } from 'formik';
-import { useDispatch,useSelector} from 'react-redux';
-import validationSchema from './validationLoginSchema';
-import { login } from "store/login/actions";
+import { useDispatch, useSelector } from 'react-redux';
+import { login, openRegModal, changeMessage } from 'store/auth/actions';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import {Registration} from 'components/common'
+import { Registration, SnackBar } from 'components/common';
 import history from 'store/history';
-
-
+import validationSchema from './validationLoginSchema';
+import styles from './styles.module.css';
 
 function LoginPage() {
-  
-  const [isRegModal,setIsRegModal] = useState(false);
   const dispatch = useDispatch();
-  const isRequesting = useSelector(state=>state.auth.isRequesting);
-  const isAuth = useSelector(state=>state.auth.isAuth);
-  useEffect(()=>{
-    if(isAuth){
+  const isRequesting = useSelector(state => state.auth.isRequesting);
+  const isAuth = useSelector(state => state.auth.isAuth);
+  const dialogMessage = useSelector(state => state.auth.message);
+  const isRegModal = useSelector(state => state.auth.regModal);
+  useEffect(() => {
+    if (isAuth) {
       history.push('/contacts');
     }
-  },[isAuth]);
+  }, [isAuth]);
   return (
     <div className={styles.main}>
-      {isRequesting && <div className={styles.preload}><CircularProgress /></div>}
-      {isRegModal && <Registration closeModal={()=>setIsRegModal(false)}/>}
+      {isRequesting && (
+        <div className={styles.preload}>
+          <CircularProgress />
+        </div>
+      )}
+      {isRegModal && <Registration />}
       <div className={styles.leftLoginBlock}>
         <h1>Coro</h1>
         <Formik
@@ -46,38 +47,47 @@ function LoginPage() {
             isSubmitting,
             /* and other goodies */
           }) => (
-              <form method='post' className={styles.form} onSubmit={handleSubmit}>
-                <label htmlFor="" className={styles.formLabel}>
-                  <span className={styles.labelText}>Email </span>
-                  <input
-                    className={styles.textField}
-                    type="email"
-                    name="email"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.email}
-                  />
-                </label>
-                {errors.email && touched.email && errors.email}
-                <label htmlFor="" className={styles.formLabel}>
-                  <span className={styles.labelText}>Password</span>
-                  <input
-                    className={styles.textField}
-                    type="password"
-                    name="password"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.password}
-                  />
-                </label>
-                <p onClick = {()=>{setIsRegModal(true)}} className={styles.offerToReg}>Have not account? Registred now!</p>
+            <form method="post" className={styles.form} onSubmit={handleSubmit}>
+              <label htmlFor="emailInput" className={styles.formLabel}>
+                <span className={styles.labelText}>Email </span>
+                <input
+                  id="emailInput"
+                  className={styles.textField}
+                  type="email"
+                  name="email"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.email}
+                />
+              </label>
+              {errors.email && touched.email && errors.email}
+              <label htmlFor="" className={styles.formLabel}>
+                <span className={styles.labelText}>Password</span>
+                <input
+                  className={styles.textField}
+                  type="password"
+                  name="password"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.password}
+                />
+              </label>
 
-                {errors.password && touched.password && errors.password}
-                <button className={styles.formBtn} type="submit" disabled={isSubmitting}>
-                  Submit
-                </button>
-              </form>
-            )}
+              {errors.password && touched.password && errors.password}
+              <p
+                onClick={() => {
+                  dispatch(openRegModal());
+                }}
+                className={styles.offerToReg}
+              >
+                Have not account? Registred now!
+              </p>
+
+              <button className={styles.formBtn} type="submit" disabled={isRequesting}>
+                Submit
+              </button>
+            </form>
+          )}
         </Formik>
 
         <img src={logo} alt="" />
@@ -85,8 +95,15 @@ function LoginPage() {
       <div className={styles.rightLoginBlock}>
         <h2>ILLU</h2>
       </div>
+
+      {!!dialogMessage && (
+        <SnackBar
+          dialogMessage={dialogMessage}
+          closeHandler={() => dispatch(changeMessage(''))}
+        />
+      )}
     </div>
   );
-};
+}
 
 export default LoginPage;

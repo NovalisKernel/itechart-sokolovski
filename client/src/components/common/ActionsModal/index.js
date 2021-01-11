@@ -1,12 +1,11 @@
 import React from 'react';
 import styles from './styles.module.css';
 import { useDispatch } from 'react-redux';
-import { deletedContact } from 'store/contacts/actions';
-import { editContact } from 'store/contacts/actions';
+import { openDeleteModal,editContact } from 'store/contacts/actions';
 
 
 function ActionsModal({ closeActionsModal, active, id }) {
-    // const cls = [styles.actionsModal];
+    
     const dispatch = useDispatch();
     return (
         <>
@@ -17,7 +16,13 @@ function ActionsModal({ closeActionsModal, active, id }) {
                     closeActionsModal()
                 }
                 } className={styles.editText}>Edit</span>
-                <span onClick={() => dispatch(deletedContact(id))} className={styles.deleteText}>Delete</span>
+                <span onClick={
+                    () => {
+                        // dispatch(deletedContact(id))
+                        dispatch(openDeleteModal(id));
+                        closeActionsModal()
+                        }
+                    } className={styles.deleteText}>Delete</span>
             </div>
         </>
     );

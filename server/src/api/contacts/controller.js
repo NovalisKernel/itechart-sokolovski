@@ -1,17 +1,37 @@
 import { getContacts, addContact, changeContact, deleteContact } from './service';
 
-const GetContactsController = async (req, res) => {
+// const getContactsController = async (req, res) => {
+//   try {
+//     const contacts = await getContacts();
+//     res.json(contacts);
+//   } catch (e) {
+//     res.status(500).json({ message: e.message });
+//   }
+// };
+
+const getContactsController = async (req, res) => {
   try {
-    const contacts = await getContacts();
-    res.json({ contacts });
+    const { page, count, levels, promoters, decisions } = req.query;
+    const contacts = await getContacts(page, count, levels, promoters, decisions);
+    res.json(contacts);
   } catch (e) {
     res.status(500).json({ message: e.message });
   }
 };
 
-const AddContactsController = async (req, res) => {
+const addContactsController = async (req, res) => {
   try {
-    const { name, job, decision, promoter, level, relationship, topics } = req.body;
+    const {
+      name,
+      job,
+      decision,
+      promoter,
+      level,
+      relationship,
+      topics,
+      page,
+      count
+    } = req.body;
     const allContacts = await addContact(
       name,
       job,
@@ -19,17 +39,31 @@ const AddContactsController = async (req, res) => {
       promoter,
       level,
       relationship,
-      topics
+      topics,
+      page,
+      count
     );
-    res.json({ message: `Создан новый контакт ${name}`, contacts: allContacts });
+    // res.json({ message: `Создан новый контакт ${name}`, contacts: allContacts });
+    res.json(allContacts);
   } catch (e) {
     res.status(500).json({ message: e.message || 'Что-то пошло не так...' });
   }
 };
 
-const ChangeContactsController = async (req, res) => {
+const changeContactsController = async (req, res) => {
   try {
-    const { id, name, job, decision, promoter, level, relationship, topics } = req.body;
+    const {
+      id,
+      name,
+      job,
+      decision,
+      promoter,
+      level,
+      relationship,
+      topics,
+      page,
+      count
+    } = req.body;
     const allContacts = await changeContact(
       id,
       name,
@@ -38,27 +72,31 @@ const ChangeContactsController = async (req, res) => {
       promoter,
       level,
       relationship,
-      topics
+      topics,
+      page,
+      count
     );
-    res.json({ message: `Изменен контакт ${name}`, contacts: allContacts });
+    // res.json({ message: `Изменен контакт ${name}`, contacts: allContacts });
+    res.json(allContacts);
   } catch (e) {
     res.status(500).json({ message: e.message || 'Что-то пошло не так...' });
   }
 };
 
-const DeleteContactsController = async (req, res) => {
+const deleteContactsController = async (req, res) => {
   try {
-    const { id } = req.body;
-    const allContacts = await deleteContact(id);
-    res.json({ message: `Удален контакт с id=${id}`, contacts: allContacts });
+    const { id, page, count } = req.body;
+    const allContacts = await deleteContact(id, page, count);
+    // res.json({ message: `Удален контакт с id=${id}`, contacts: allContacts });
+    res.json(allContacts);
   } catch (e) {
     res.status(500).json({ message: e.message || 'Что-то пошло не так...' });
   }
 };
 
 export {
-  GetContactsController,
-  AddContactsController,
-  ChangeContactsController,
-  DeleteContactsController
+  getContactsController,
+  addContactsController,
+  changeContactsController,
+  deleteContactsController
 };

@@ -1,135 +1,208 @@
-@import "~materialize-css/dist/css/materialize.min.css";
-.home{
-    background: #f4f4f4;
-    min-height: 100vh;
-    display: flex;
+@import '~materialize-css/dist/css/materialize.min.css';
+.home {
+  background: #f4f4f4;
+  min-height: 100vh;
+  display: flex;
 }
-.menu{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    height: 50px;
-    background: #ffffff;
-    border-bottom: 1px solid #dddddd;
-    z-index: 1;
-    box-shadow: 0 0 2px 2px #dddddd;
-    position: fixed;
-    top: 0;
-    width: 100%;
+.menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 50px;
+  background: #ffffff;
+  border-bottom: 1px solid #dddddd;
+  z-index: 1;
+  box-shadow: 0 0 2px 2px #dddddd;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
-.menu button{
-    margin-right: 5%;
-    padding: 10px 20px;
-    background: none;
-    border: 1px solid #dddddd;
+.menu button {
+  margin-right: 5%;
+  padding: 10px 20px;
+  background: none;
+  border: 1px solid #dddddd;
 }
-.menu button:hover{
-    background: #dddddd;
-    cursor: pointer;
-    box-shadow: 3px 0 10px 1px #8a8a8a;
-    transition: .5s all;
+.menu button:hover {
+  background: #dddddd;
+  cursor: pointer;
+  box-shadow: 3px 0 10px 1px #8a8a8a;
+  transition: 0.5s all;
 }
-.main{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 100vh;
-    width: 100%;
-    
+.main {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
 }
-.emptyContact h1{
-    color: #172b3a;
-    font-size: 60px;
-    letter-spacing: 6px;
-    font-weight: bold;
+.emptyContact h1 {
+  color: #172b3a;
+  font-size: 60px;
+  letter-spacing: 6px;
+  font-weight: bold;
 }
-.emptyContact p{
-    color: #172b3a;
-    margin-top: 15px;
+.emptyContact p {
+  color: #172b3a;
+  margin-top: 15px;
 }
-.emptyContact button{
-    margin-top: 40px;
-    padding: 10px 10%;
-}
-
-.main>img{
-    width: 30%;
-}
-.notEmptyContact{
-    width: 90%;
-    margin: 50px auto;
-}
-.notEmptyContact h2{
-    margin-top: 40px;
-}
-.notEmptyContact .sort{
-    margin: 20px 0 40px 0;
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-.notEmptyContact .sort input{
-    padding: 10px 20px;
-    text-indent: 30px;
-}
-.notEmptyContact .sort input::placeholder{
-    font-style: italic;
-}
-.notEmptyContact .sort img{
-    width: 100%;
-    background: #fff;
-    padding: 10px;
-    outline: 1px solid #dddddd;
+.emptyContact button {
+  margin-top: 40px;
+  padding: 10px 10%;
 }
 
-.notEmptyContact .sort img:hover{
-    cursor: pointer;
+.main > img {
+  width: 30%;
 }
-.notEmptyContact .sort .searchIcon{
-    position: absolute;
-    left: 15px;
-    top: 10px;
-    padding: 0;
-    background: none;
-    outline: none;
-    width: auto;
-    height: auto;
+.notEmptyContact {
+  width: 90%;
+  margin: 50px auto;
 }
-.actionRow{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.notEmptyContact h2 {
+  margin-top: 40px;
 }
-.actionRow>button{
-    padding: 10px 20px;
+.notEmptyContact .sort {
+  margin: 20px 0 40px 0;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
-.notEmptyContact .sort .searchIcon:hover{
-    cursor: auto;
+.notEmptyContact .sort input {
+  padding: 10px 20px;
+  text-indent: 30px;
 }
-.notEmptyContact .sort .filter{
-    margin: 0 20px;
-    height: 100%;
+.notEmptyContact .sort input::placeholder {
+  font-style: italic;
+}
+.notEmptyContact .sort img {
+  width: 100%;
+  background: #fff;
+  padding: 10px;
+  outline: 1px solid #dddddd;
+}
+.sort .filter {
+  padding: 9px;
+  border: none;
+  background: #fff;
+  outline: 1px solid #dddddd;
+  position: relative;
+  cursor: pointer;
+}
+.countOfFilter {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 10px;
+  color: #ff0000;
+}
+.sort .filter .filterImg {
+  padding: 0;
+  outline: none;
+}
+.notEmptyContact .sort img:hover {
+  cursor: pointer;
+}
+.notEmptyContact .sort .searchIcon {
+  position: absolute;
+  left: 15px;
+  top: 10px;
+  padding: 0;
+  background: none;
+  outline: none;
+  width: auto;
+  height: auto;
+}
+.actionRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.actionRow > button {
+  padding: 10px 20px;
+}
+.notEmptyContact .sort .searchIcon:hover {
+  cursor: auto;
+}
+.notEmptyContact .sort .filter {
+  margin: 0 20px;
+  height: 100%;
+  width: 100%;
+}
+.notEmptyContact .sort .active {
+  background: #efefef;
+}
+.notEmptyContact > img {
+  width: 30%;
+}
+.row {
+  width: 15px;
+}
+.preload {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f4f4f4;
+  z-index: 10;
+  width: 100%;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: #ffffff;
+  border-top: 1px solid #dddddd;
+  z-index: 1;
+  box-shadow: 0 0 2px 2px #dddddd;
+  height: 60px;
+}
+.container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+.contactLink {
+  height: 26px;
+  margin: 0 1px;
+  padding: 0 4px;
+  min-width: 26px;
+  border-radius: 13px;
+  border: 0;
+  background: none;
+}
+.contactLink:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+}
+.contactLinkSelected {
+  background-color: rgba(0, 0, 0, 0.08);
+  color: red;
+  height: 26px;
+  margin: 0 1px;
+  padding: 0 4px;
+  min-width: 26px;
+  border-radius: 13px;
+  border: 0;
+}
+.contactLinks nav {
+  background: none;
+  box-shadow: none;
+}
+
+.selectCountContacts > div {
+  margin: 0 0 10px 0;
+}
+
+@media all and (max-width: 600px) {
+  .container {
     width: 100%;
-}
-.notEmptyContact .sort .active{
-    background: #efefef;
-}
-.notEmptyContact>img{
-    width: 30%;
-}
-.row{
-    width: 15px;
-}
-.preload{
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(255,255,255,0.6);
-    z-index: 10;
-    width: 100%;
+  }
 }

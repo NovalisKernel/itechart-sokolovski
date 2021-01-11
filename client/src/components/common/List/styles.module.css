@@ -1,4 +1,8 @@
-.contacts{
-    display: flex;
-    margin-top: 15px;
+.contacts {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+.priority {
+  font-size: 2.5rem;
 }

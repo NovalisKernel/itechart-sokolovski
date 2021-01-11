@@ -1,135 +1,143 @@
-@import "~materialize-css/dist/css/materialize.min.css";
+@import '~materialize-css/dist/css/materialize.min.css';
 
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
-li{
-    list-style-type: none;
+li {
+  list-style-type: none;
 }
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 }
-p{
-    margin: 0;
-    padding: 0;
-}
-
-.main{
-    height: 100vh;
-    width: 100%;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-}
-.main>div{
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    position: relative;
-}
-.main h1{
-    color: #cc0000;
-    font-size: 30px;
-    font-weight: bold;
-    position: relative;
-    bottom: 100px;
-}
-.form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
-.formLabel{
-    display: flex;
-    flex-direction: column;
-    margin: 10px 0;
-    width: 50%;
-}
-.labelText{
-    color:#294054;
-    font-size: 14px;
-    letter-spacing: 1px;
-    margin: 5px 0;
-}
-.textField{
-    border: 1px solid #e0e0e0;
-    border-radius: 2px;
-    text-indent: 10px;
-    padding: 10px 0;
-}
-.formBtn{
-    background: #cc0000;
-    border: 1px solid #cc0000;
-    color: #fff;
-    font-weight: bold;
-    transition: .5s background;
-    padding: 10px 30px;
-}
-.formBtn:hover{
-    background: none;
-    color: #cc0000;
-    cursor: pointer;
-    transition: .5s background;
-}
-.form label{
-    display: flex;
-    flex-direction: column;
-    margin: 10px 0;
-    width: 50%;
-}
-.form label span{
-    color:#294054;
-    font-size: 14px;
-    letter-spacing: 1px;
-    margin: 5px 0;
+p {
+  margin: 0;
+  padding: 0;
 }
 
-.form input{
-    padding: 10px 0;
+.main {
+  height: 100vh;
+  width: 100%;
+  background: #fff;
+  display: flex;
+  justify-content: center;
 }
-.form button{
-    margin: 30px 0;
+.main > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
 }
-.form p span{
-    font-weight: bold;
+.leftLoginBlock {
+  width: 50%;
 }
-.leftLoginBlock img{
-    position: absolute;
-    bottom: 20px;
+.main h1 {
+  color: #cc0000;
+  font-size: 30px;
+  font-weight: bold;
+  position: relative;
+  bottom: 100px;
 }
-.rightLoginBlock{
-    background: url("../../assets/img/back.jpg");
-    background-size: cover;
-    background-position: center;
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
-.rightLoginBlock h2{
-    color: #ffdd48;
-    font-size: 155px;
-    font-weight: bold;
+.formLabel {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+  width: 50%;
 }
-.main>.preload{
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(255,255,255,0.6);
-    z-index: 10;
-    width: 100%;
+.labelText {
+  color: #294054;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin: 5px 0;
 }
-.offerToReg{
-    cursor: pointer;
-    color: #000;
-    transition: .5s color;
+.textField {
+  border: 1px solid #e0e0e0;
+  border-radius: 2px;
+  text-indent: 10px;
+  padding: 10px 0;
 }
-.offerToReg:hover{
-    color: #ff0000;
-    transition: .5s all;
+.formBtn {
+  background: #cc0000;
+  border: 1px solid #cc0000;
+  color: #fff;
+  font-weight: bold;
+  transition: 0.5s background;
+  padding: 10px 30px;
+}
+.formBtn:hover {
+  background: none;
+  color: #cc0000;
+  cursor: pointer;
+  transition: 0.5s background;
+}
+.formBtn:disabled {
+  background: gray;
+  color: #fff;
+  border: 1px solid #000;
+}
+.form label {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+  width: 50%;
+}
+.form label span {
+  color: #294054;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin: 5px 0;
+}
+
+.form input {
+  padding: 10px 0;
+}
+.form button {
+  margin: 30px 0;
+}
+.form p span {
+  font-weight: bold;
+}
+.leftLoginBlock img {
+  position: absolute;
+  bottom: 20px;
+}
+.rightLoginBlock {
+  background: url('../../assets/img/back.jpg');
+  background-size: cover;
+  background-position: center;
+  width: 50%;
+}
+.rightLoginBlock h2 {
+  color: #ffdd48;
+  font-size: 155px;
+  font-weight: bold;
+}
+.main > .preload {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 10;
+  width: 100%;
+}
+.offerToReg {
+  cursor: pointer;
+  color: #000;
+  transition: 0.5s color;
+}
+.offerToReg:hover {
+  color: #ff0000;
+  transition: 0.5s all;
 }
